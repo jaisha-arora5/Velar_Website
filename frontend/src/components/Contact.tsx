@@ -6,6 +6,7 @@ import { useTheme } from "@/context/ThemeContext";
 export default function Contact() {
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
+  const isCustomTheme = theme === "custom";
   
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -17,9 +18,17 @@ export default function Contact() {
     setFormData({ name: "", email: "", message: "" });
   };
 
-  const accentColor = isDarkTheme ? "#06b6d4" : "#d97706";
-  const accentBgColor = isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(217, 119, 6, 0.15)";
-  const accentBorderColor = isDarkTheme ? "rgba(6, 182, 212, 0.4)" : "rgba(217, 119, 6, 0.3)";
+  const accentColor = isDarkTheme ? "#06b6d4" : isCustomTheme ? "#36558F" : "#d97706";
+  const accentBgColor = isDarkTheme 
+    ? "rgba(13, 42, 74, 0.4)" 
+    : isCustomTheme 
+    ? "rgba(218, 240, 238, 0.6)" 
+    : "rgba(217, 119, 6, 0.15)";
+  const accentBorderColor = isDarkTheme 
+    ? "rgba(6, 182, 212, 0.4)" 
+    : isCustomTheme 
+    ? "rgba(54, 85, 143, 0.3)" 
+    : "rgba(217, 119, 6, 0.3)";
 
   return (
     <section className={`w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 py-12 relative overflow-hidden transition-colors duration-300`}>
@@ -28,12 +37,12 @@ export default function Contact() {
         {/* Streamlined Section Title Container */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl transition-colors duration-300 ${
-            isDarkTheme ? "text-white" : "text-[#1F1300]"
+            isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
           }`}>
             Connect With Our Enterprise Briefing Team
           </h2>
           <p className={`text-xs sm:text-sm max-w-md mx-auto transition-colors duration-300 ${
-            isDarkTheme ? "text-slate-400" : "text-amber-900"
+            isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-900"
           }`}>
             Initiate a secure channel to discuss custom local deployments, PSU compliance, or platform integration architectures.
           </p>
@@ -45,15 +54,19 @@ export default function Contact() {
           {/* COLUMN 1: INQUIRY FORM */}
           <div 
             style={{
-              backgroundColor: isDarkTheme ? "#0A0726" : "#fef3c7",
-              borderColor: isDarkTheme ? "rgba(34, 211, 238, 0.1)" : "rgba(217, 119, 6, 0.2)"
+              backgroundColor: isDarkTheme ? "#0A0726" : isCustomTheme ? "#FAF9F6" : "#fef3c7",
+              borderColor: isDarkTheme 
+                ? "rgba(34, 211, 238, 0.1)" 
+                : isCustomTheme 
+                ? "rgba(64, 121, 140, 0.2)" 
+                : "rgba(217, 119, 6, 0.2)"
             }}
             className={`border rounded-2xl p-6 sm:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.4)] flex flex-col justify-between relative group hover:border-opacity-50 transition-all duration-300`}
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
                 <label className={`text-[10px] font-mono tracking-wider uppercase transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : "text-amber-800"
+                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                 }`}>Authorized Official Name</label>
                 <input 
                   type="text" 
@@ -62,13 +75,19 @@ export default function Contact() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g., Director of Operations"
                   style={{
-                    backgroundColor: isDarkTheme ? "#030014" : "#fffbeb",
-                    borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(217, 119, 6, 0.2)",
-                    color: isDarkTheme ? "#fff" : "#1F1300"
+                    backgroundColor: isDarkTheme ? "#030014" : isCustomTheme ? "#FFFFFF" : "#fffbeb",
+                    borderColor: isDarkTheme 
+                      ? "rgba(255, 255, 255, 0.1)" 
+                      : isCustomTheme 
+                      ? "rgba(64, 121, 140, 0.25)" 
+                      : "rgba(217, 119, 6, 0.2)",
+                    color: isDarkTheme ? "#fff" : isCustomTheme ? "#1A2530" : "#1F1300"
                   }}
                   className={`w-full border rounded-xl px-4 py-3 text-sm transition-all focus:outline-none ${
                     isDarkTheme 
                       ? "placeholder-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.1)]"
+                      : isCustomTheme
+                      ? "placeholder-slate-400 focus:border-[#36558F]/50 focus:shadow-[0_0_15px_rgba(54,85,143,0.15)]"
                       : "placeholder-amber-600 focus:border-yellow-600/50 focus:shadow-[0_0_15px_rgba(217,119,6,0.1)]"
                   }`}
                 />
@@ -76,7 +95,7 @@ export default function Contact() {
 
               <div className="space-y-1.5">
                 <label className={`text-[10px] font-mono tracking-wider uppercase transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : "text-amber-800"
+                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                 }`}>Institutional Email Address</label>
                 <input 
                   type="email" 
@@ -85,13 +104,19 @@ export default function Contact() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="name@organization.gov.in"
                   style={{
-                    backgroundColor: isDarkTheme ? "#030014" : "#fffbeb",
-                    borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(217, 119, 6, 0.2)",
-                    color: isDarkTheme ? "#fff" : "#1F1300"
+                    backgroundColor: isDarkTheme ? "#030014" : isCustomTheme ? "#FFFFFF" : "#fffbeb",
+                    borderColor: isDarkTheme 
+                      ? "rgba(255, 255, 255, 0.1)" 
+                      : isCustomTheme 
+                      ? "rgba(64, 121, 140, 0.25)" 
+                      : "rgba(217, 119, 6, 0.2)",
+                    color: isDarkTheme ? "#fff" : isCustomTheme ? "#1A2530" : "#1F1300"
                   }}
                   className={`w-full border rounded-xl px-4 py-3 text-sm transition-all focus:outline-none ${
                     isDarkTheme 
                       ? "placeholder-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.1)]"
+                      : isCustomTheme
+                      ? "placeholder-slate-400 focus:border-[#36558F]/50 focus:shadow-[0_0_15px_rgba(54,85,143,0.15)]"
                       : "placeholder-amber-600 focus:border-yellow-600/50 focus:shadow-[0_0_15px_rgba(217,119,6,0.1)]"
                   }`}
                 />
@@ -99,7 +124,7 @@ export default function Contact() {
 
               <div className="space-y-1.5">
                 <label className={`text-[10px] font-mono tracking-wider uppercase transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : "text-amber-800"
+                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                 }`}>Brief Operational Requirements</label>
                 <textarea 
                   rows={3}
@@ -108,13 +133,19 @@ export default function Contact() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Outline required data compliance parameters, scale of nodes..."
                   style={{
-                    backgroundColor: isDarkTheme ? "#030014" : "#fffbeb",
-                    borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(217, 119, 6, 0.2)",
-                    color: isDarkTheme ? "#fff" : "#1F1300"
+                    backgroundColor: isDarkTheme ? "#030014" : isCustomTheme ? "#FFFFFF" : "#fffbeb",
+                    borderColor: isDarkTheme 
+                      ? "rgba(255, 255, 255, 0.1)" 
+                      : isCustomTheme 
+                      ? "rgba(64, 121, 140, 0.25)" 
+                      : "rgba(217, 119, 6, 0.2)",
+                    color: isDarkTheme ? "#fff" : isCustomTheme ? "#1A2530" : "#1F1300"
                   }}
                   className={`w-full border rounded-xl px-4 py-3 text-sm transition-all focus:outline-none resize-none ${
                     isDarkTheme 
                       ? "placeholder-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.1)]"
+                      : isCustomTheme
+                      ? "placeholder-slate-400 focus:border-[#36558F]/50 focus:shadow-[0_0_15px_rgba(54,85,143,0.15)]"
                       : "placeholder-amber-600 focus:border-yellow-600/50 focus:shadow-[0_0_15px_rgba(217,119,6,0.1)]"
                   }`}
                 />
@@ -125,6 +156,8 @@ export default function Contact() {
                 className={`w-full text-xs font-semibold uppercase tracking-widest py-3.5 rounded-xl transition-all shadow-md cursor-pointer mt-2 ${
                   isDarkTheme
                     ? "text-[#030014] bg-cyan-400 hover:bg-cyan-300 shadow-cyan-500/10"
+                    : isCustomTheme
+                    ? "text-white bg-[#36558F] hover:bg-[#40798C] shadow-[#36558F]/20 hover:shadow-[#36558F]/30"
                     : "text-white bg-amber-600 hover:bg-amber-700 shadow-amber-600/20 hover:shadow-amber-700/30"
                 }`}
               >
@@ -139,15 +172,19 @@ export default function Contact() {
             {/* Top Grid Block: Coordinates */}
             <div 
               style={{
-                backgroundColor: isDarkTheme ? "#0A0726" : "#fef3c7",
-                borderColor: isDarkTheme ? "rgba(34, 211, 238, 0.1)" : "rgba(217, 119, 6, 0.2)"
+                backgroundColor: isDarkTheme ? "#0A0726" : isCustomTheme ? "#FAF9F6" : "#fef3c7",
+                borderColor: isDarkTheme 
+                  ? "rgba(34, 211, 238, 0.1)" 
+                  : isCustomTheme 
+                  ? "rgba(64, 121, 140, 0.2)" 
+                  : "rgba(217, 119, 6, 0.2)"
               }}
               className={`border rounded-2xl p-6 sm:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.4)] space-y-4 flex-1 flex flex-col justify-center`}
             >
               <div>
                 <span style={{ color: accentColor }} className={`text-[9px] font-mono tracking-widest uppercase`}>HQ REGISTERED OFFICE</span>
                 <h3 className={`text-xl font-bold tracking-tight mt-0.5 transition-colors duration-300 ${
-                  isDarkTheme ? "text-white" : "text-[#1F1300]"
+                  isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
                 }`}>Velar Info Pvt LTD</h3>
               </div>
               
@@ -169,10 +206,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className={`text-[10px] font-mono uppercase tracking-wider transition-colors duration-300 ${
-                      isDarkTheme ? "text-slate-400" : "text-amber-800"
+                      isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                     }`}>Corporate Address</h4>
                     <p className={`text-xs font-medium mt-0.5 leading-relaxed transition-colors duration-300 ${
-                      isDarkTheme ? "text-white" : "text-[#1F1300]"
+                      isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
                     }`}>
                       X-20 First Floor ,Naveen Shahdara ,Delhi - 110032
                     </p>
@@ -195,10 +232,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className={`text-[10px] font-mono uppercase tracking-wider transition-colors duration-300 ${
-                      isDarkTheme ? "text-slate-400" : "text-amber-800"
+                      isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                     }`}>Secure Direct Line</h4>
                     <p className={`text-xs font-medium mt-0.5 transition-colors ${
-                      isDarkTheme ? "text-white hover:text-cyan-400" : "text-[#1F1300] hover:text-yellow-700"
+                      isDarkTheme ? "text-white hover:text-cyan-400" : isCustomTheme ? "text-[#36558F] hover:text-[#40798C]" : "text-[#1F1300] hover:text-yellow-700"
                     }`}>
                       <a href="tel:+911204000000">+91 (120) 400-0000</a>
                     </p>
@@ -221,10 +258,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className={`text-[10px] font-mono uppercase tracking-wider transition-colors duration-300 ${
-                      isDarkTheme ? "text-slate-400" : "text-amber-800"
+                      isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                     }`}>Secure Mail Interface</h4>
                     <p className={`text-xs font-medium mt-0.5 transition-colors ${
-                      isDarkTheme ? "text-white hover:text-cyan-400" : "text-[#1F1300] hover:text-yellow-700"
+                      isDarkTheme ? "text-white hover:text-cyan-400" : isCustomTheme ? "text-[#36558F] hover:text-[#40798C]" : "text-[#1F1300] hover:text-yellow-700"
                     }`}>
                       <a href="mailto:briefing@velar.ai">briefing@velar.ai</a>
                     </p>
@@ -236,17 +273,21 @@ export default function Contact() {
             {/* Bottom Grid Block: Social Access Nodes */}
             <div 
               style={{
-                backgroundColor: isDarkTheme ? "#0A0726" : "#fef3c7",
-                borderColor: isDarkTheme ? "rgba(34, 211, 238, 0.1)" : "rgba(217, 119, 6, 0.2)"
+                backgroundColor: isDarkTheme ? "#0A0726" : isCustomTheme ? "#FAF9F6" : "#fef3c7",
+                borderColor: isDarkTheme 
+                  ? "rgba(34, 211, 238, 0.1)" 
+                  : isCustomTheme 
+                  ? "rgba(64, 121, 140, 0.2)" 
+                  : "rgba(217, 119, 6, 0.2)"
               }}
               className={`border rounded-2xl p-5 shadow-[0_4px_30px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4`}
             >
               <div>
                 <h4 className={`text-xs font-bold tracking-tight transition-colors duration-300 ${
-                  isDarkTheme ? "text-white" : "text-[#1F1300]"
+                  isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
                 }`}>Institutional Media Access</h4>
                 <p className={`text-[11px] mt-0.5 transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : "text-amber-800"
+                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
                 }`}>Stay monitored with our architecture updates.</p>
               </div>
               
@@ -258,6 +299,8 @@ export default function Contact() {
                   className={`flex items-center gap-2 text-xs font-medium px-3.5 py-2 rounded-xl transition-all shadow-inner border ${
                     isDarkTheme
                       ? "text-slate-300 bg-[#030014] border-white/5 hover:border-blue-500/40 hover:text-blue-400"
+                      : isCustomTheme
+                      ? "text-[#36558F] bg-[#DAF0EE] border-[#40798C]/20 hover:border-[#36558F] hover:text-[#36558F]"
                       : "text-amber-900 bg-yellow-100 border-yellow-300 hover:border-yellow-500 hover:text-yellow-700"
                   }`}
                 >
@@ -274,6 +317,8 @@ export default function Contact() {
                   className={`flex items-center gap-2 text-xs font-medium px-3.5 py-2 rounded-xl transition-all shadow-inner border ${
                     isDarkTheme
                       ? "text-slate-300 bg-[#030014] border-white/5 hover:border-pink-500/40 hover:text-pink-400"
+                      : isCustomTheme
+                      ? "text-[#36558F] bg-[#DAF0EE] border-[#40798C]/20 hover:border-[#36558F] hover:text-[#36558F]"
                       : "text-amber-900 bg-yellow-100 border-yellow-300 hover:border-yellow-500 hover:text-yellow-700"
                   }`}
                 >

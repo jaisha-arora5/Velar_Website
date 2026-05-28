@@ -12,6 +12,7 @@ interface SolutionCard {
 export default function Solutions() {
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
+  const isCustomTheme = theme === "custom";
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const leftSolutions: SolutionCard[] = [
@@ -66,6 +67,10 @@ export default function Solutions() {
       { radiusX: 110, radiusY: 105, speed: 0.015, color: "rgba(29, 78, 216, 0.6)", count: 3 },
       { radiusX: 105, radiusY: 110, speed: -0.02, color: "rgba(59, 130, 246, 0.5)", count: 2 },
       { radiusX: 115, radiusY: 95,  speed: 0.01,  color: "rgba(6, 182, 212, 0.4)", count: 4 },
+    ] : isCustomTheme ? [
+      { radiusX: 110, radiusY: 105, speed: 0.015, color: "rgba(54, 85, 143, 0.6)", count: 3 },
+      { radiusX: 105, radiusY: 110, speed: -0.02, color: "rgba(64, 121, 140, 0.5)", count: 2 },
+      { radiusX: 115, radiusY: 95,  speed: 0.01,  color: "rgba(218, 240, 238, 0.6)", count: 4 },
     ] : [
       { radiusX: 110, radiusY: 105, speed: 0.015, color: "rgba(217, 119, 6, 0.6)", count: 3 },
       { radiusX: 105, radiusY: 110, speed: -0.02, color: "rgba(217, 119, 6, 0.5)", count: 2 },
@@ -86,6 +91,10 @@ export default function Solutions() {
         radialGlow.addColorStop(0, "rgba(29, 78, 216, 0.25)");
         radialGlow.addColorStop(0.5, "rgba(59, 130, 246, 0.12)");
         radialGlow.addColorStop(1, "rgba(3, 0, 20, 0)");
+      } else if (isCustomTheme) {
+        radialGlow.addColorStop(0, "rgba(54, 85, 143, 0.25)");
+        radialGlow.addColorStop(0.5, "rgba(64, 121, 140, 0.12)");
+        radialGlow.addColorStop(1, "rgba(250, 249, 246, 0)");
       } else {
         radialGlow.addColorStop(0, "rgba(217, 119, 6, 0.25)");
         radialGlow.addColorStop(0.5, "rgba(247, 206, 91, 0.12)");
@@ -132,11 +141,11 @@ export default function Solutions() {
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [isDarkTheme]);
+  }, [theme, isDarkTheme, isCustomTheme]);
 
-  const accentColor = isDarkTheme ? "#06b6d4" : "#d97706";
-  const wireColor = isDarkTheme ? "rgba(59, 130, 246, 0.25)" : "rgba(217, 119, 6, 0.25)";
-  const wireDashColor = isDarkTheme ? "rgba(59, 130, 246, 0.3)" : "rgba(217, 119, 6, 0.3)";
+  const accentColor = isDarkTheme ? "#06b6d4" : isCustomTheme ? "#36558F" : "#d97706";
+  const wireColor = isDarkTheme ? "rgba(59, 130, 246, 0.25)" : isCustomTheme ? "rgba(64, 121, 140, 0.2)" : "rgba(217, 119, 6, 0.25)";
+  const wireDashColor = isDarkTheme ? "rgba(59, 130, 246, 0.3)" : isCustomTheme ? "rgba(64, 121, 140, 0.25)" : "rgba(217, 119, 6, 0.3)";
 
   return (
     <section className={`w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 py-32 relative overflow-hidden transition-colors duration-300`}>
@@ -144,7 +153,7 @@ export default function Solutions() {
       {/* Header Container Block */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 relative z-10">
         <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight transition-colors duration-300 ${
-          isDarkTheme ? "text-white" : "text-[#1F1300]"
+          isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
         }`}>
           Our Suite of Enterprise Solutions
         </h2>
@@ -161,8 +170,16 @@ export default function Solutions() {
                 key={n} 
                 className="w-2 h-2 rounded-full transform translate-x-[3px]"
                 style={{
-                  backgroundColor: isDarkTheme ? "rgba(59, 130, 246, 0.4)" : "rgba(217, 119, 6, 0.4)",
-                  boxShadow: isDarkTheme ? "0 0 8px #3b82f6" : "0 0 8px #d97706"
+                  backgroundColor: isDarkTheme 
+                    ? "rgba(59, 130, 246, 0.4)" 
+                    : isCustomTheme 
+                    ? "rgba(54, 85, 143, 0.4)" 
+                    : "rgba(217, 119, 6, 0.4)",
+                  boxShadow: isDarkTheme 
+                    ? "0 0 8px #3b82f6" 
+                    : isCustomTheme 
+                    ? "0 0 8px #36558F" 
+                    : "0 0 8px #d97706"
                 }}
               />
             ))}
@@ -172,8 +189,16 @@ export default function Solutions() {
             <div 
               key={idx}
               style={{
-                backgroundColor: isDarkTheme ? "rgba(255, 255, 255, 0.01)" : "rgba(217, 119, 6, 0.03)",
-                borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.05)" : "rgba(217, 119, 6, 0.1)"
+                backgroundColor: isDarkTheme 
+                  ? "rgba(255, 255, 255, 0.01)" 
+                  : isCustomTheme 
+                  ? "rgba(218, 240, 238, 0.25)" 
+                  : "rgba(217, 119, 6, 0.03)",
+                borderColor: isDarkTheme 
+                  ? "rgba(255, 255, 255, 0.05)" 
+                  : isCustomTheme 
+                  ? "rgba(64, 121, 140, 0.15)" 
+                  : "rgba(217, 119, 6, 0.1)"
               }}
               className={`group relative backdrop-blur-md p-6 rounded-xl transition-all duration-300 shadow-sm border hover:border-opacity-50`}
             >
@@ -181,8 +206,16 @@ export default function Solutions() {
                 <span 
                   style={{
                     color: accentColor,
-                    backgroundColor: isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(217, 119, 6, 0.15)",
-                    borderColor: isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(217, 119, 6, 0.3)"
+                    backgroundColor: isDarkTheme 
+                      ? "rgba(13, 42, 74, 0.4)" 
+                      : isCustomTheme 
+                      ? "rgba(218, 240, 238, 0.6)" 
+                      : "rgba(217, 119, 6, 0.15)",
+                    borderColor: isDarkTheme 
+                      ? "rgba(13, 42, 74, 0.4)" 
+                      : isCustomTheme 
+                      ? "rgba(54, 85, 143, 0.3)" 
+                      : "rgba(217, 119, 6, 0.3)"
                   }}
                   className="text-[10px] font-mono tracking-wider uppercase border px-2 py-0.5 rounded self-start"
                 >
@@ -191,12 +224,14 @@ export default function Solutions() {
                 <h3 className={`text-lg font-semibold tracking-tight group-hover:transition-colors duration-300 ${
                   isDarkTheme 
                     ? "text-white group-hover:text-blue-400"
+                    : isCustomTheme
+                    ? "text-[#1A2530] group-hover:text-[#36558F]"
                     : "text-[#1F1300] group-hover:text-yellow-600"
                 }`}>
                   {sol.title}
                 </h3>
                 <p className={`text-xs leading-relaxed transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : "text-amber-900"
+                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
                 }`}>
                   {sol.description}
                 </p>
@@ -212,7 +247,11 @@ export default function Solutions() {
           <div 
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] blur-[90px] rounded-full pointer-events-none z-0"
             style={{
-              backgroundColor: isDarkTheme ? "rgba(29, 78, 216, 0.15)" : "rgba(217, 119, 6, 0.15)"
+              backgroundColor: isDarkTheme 
+                ? "rgba(29, 78, 216, 0.15)" 
+                : isCustomTheme 
+                ? "rgba(64, 121, 140, 0.15)" 
+                : "rgba(217, 119, 6, 0.15)"
             }}
           />
           
@@ -246,8 +285,16 @@ export default function Solutions() {
                 key={n}
                 className="w-2 h-2 rounded-full transform translate-x-[-3px]"
                 style={{
-                  backgroundColor: isDarkTheme ? "rgba(59, 130, 246, 0.4)" : "rgba(217, 119, 6, 0.4)",
-                  boxShadow: isDarkTheme ? "0 0 8px #3b82f6" : "0 0 8px #d97706"
+                  backgroundColor: isDarkTheme 
+                    ? "rgba(59, 130, 246, 0.4)" 
+                    : isCustomTheme 
+                    ? "rgba(54, 85, 143, 0.4)" 
+                    : "rgba(217, 119, 6, 0.4)",
+                  boxShadow: isDarkTheme 
+                    ? "0 0 8px #3b82f6" 
+                    : isCustomTheme 
+                    ? "0 0 8px #36558F" 
+                    : "0 0 8px #d97706"
                 }}
               />
             ))}
@@ -257,8 +304,16 @@ export default function Solutions() {
             <div 
               key={idx}
               style={{
-                backgroundColor: isDarkTheme ? "rgba(255, 255, 255, 0.01)" : "rgba(217, 119, 6, 0.03)",
-                borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.05)" : "rgba(217, 119, 6, 0.1)"
+                backgroundColor: isDarkTheme 
+                  ? "rgba(255, 255, 255, 0.01)" 
+                  : isCustomTheme 
+                  ? "rgba(218, 240, 238, 0.25)" 
+                  : "rgba(217, 119, 6, 0.03)",
+                borderColor: isDarkTheme 
+                  ? "rgba(255, 255, 255, 0.05)" 
+                  : isCustomTheme 
+                  ? "rgba(64, 121, 140, 0.15)" 
+                  : "rgba(217, 119, 6, 0.1)"
               }}
               className={`group relative backdrop-blur-md p-6 rounded-xl transition-all duration-300 shadow-sm border hover:border-opacity-50`}
             >
@@ -266,8 +321,16 @@ export default function Solutions() {
                 <span 
                   style={{
                     color: accentColor,
-                    backgroundColor: isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(217, 119, 6, 0.15)",
-                    borderColor: isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(217, 119, 6, 0.3)"
+                    backgroundColor: isDarkTheme 
+                      ? "rgba(13, 42, 74, 0.4)" 
+                      : isCustomTheme 
+                      ? "rgba(218, 240, 238, 0.6)" 
+                      : "rgba(217, 119, 6, 0.15)",
+                    borderColor: isDarkTheme 
+                      ? "rgba(13, 42, 74, 0.4)" 
+                      : isCustomTheme 
+                      ? "rgba(54, 85, 143, 0.3)" 
+                      : "rgba(217, 119, 6, 0.3)"
                   }}
                   className="text-[10px] font-mono tracking-wider uppercase border px-2 py-0.5 rounded self-start"
                 >
@@ -276,12 +339,14 @@ export default function Solutions() {
                 <h3 className={`text-lg font-semibold tracking-tight group-hover:transition-colors duration-300 ${
                   isDarkTheme 
                     ? "text-white group-hover:text-blue-400"
+                    : isCustomTheme
+                    ? "text-[#1A2530] group-hover:text-[#36558F]"
                     : "text-[#1F1300] group-hover:text-yellow-600"
                 }`}>
                   {sol.title}
                 </h3>
                 <p className={`text-xs leading-relaxed transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : "text-amber-900"
+                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
                 }`}>
                   {sol.description}
                 </p>

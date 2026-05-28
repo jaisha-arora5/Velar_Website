@@ -60,12 +60,21 @@ export default function Navbar() {
   };
 
   const isDarkTheme = theme === "dark";
+  const isCustomTheme = theme === "custom";
 
   return (
     <header 
       style={{
-        backgroundColor: isDarkTheme ? "rgba(3, 0, 20, 0.8)" : "rgba(241, 232, 184, 0.9)",
-        borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(31, 19, 0, 0.15)",
+        backgroundColor: isDarkTheme 
+          ? "rgba(3, 0, 20, 0.8)" 
+          : isCustomTheme 
+          ? "rgba(218, 240, 238, 0.95)" 
+          : "rgba(241, 232, 184, 0.9)",
+        borderColor: isDarkTheme 
+          ? "rgba(255, 255, 255, 0.1)" 
+          : isCustomTheme 
+          ? "rgba(64, 121, 140, 0.2)" 
+          : "rgba(31, 19, 0, 0.15)",
       }}
       className="fixed top-0 left-0 w-full z-50 border-b backdrop-blur-md transition-colors duration-300"
     >
@@ -74,13 +83,13 @@ export default function Navbar() {
         {/* LOGO LINK */}
         <div 
           className={`flex items-center gap-2.5 cursor-pointer select-none transition-colors duration-300 ${
-            isDarkTheme ? "text-white" : "text-[#1F1300]"
+            isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
           }`}
           onClick={() => scrollToSection("home")}
         >
           <div 
             className={`w-5 h-5 rounded-sm transform rotate-45 flex-shrink-0 ${
-              isDarkTheme ? "bg-blue-600" : "bg-yellow-500"
+              isDarkTheme ? "bg-blue-600" : isCustomTheme ? "bg-[#36558F]" : "bg-yellow-500"
             }`}
           />
           <div className="flex flex-col">
@@ -89,7 +98,7 @@ export default function Navbar() {
             </span>
             <span 
               className={`text-[9px] font-semibold uppercase tracking-widest mt-1 ${
-                isDarkTheme ? "text-slate-400" : "text-amber-800"
+                isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
               }`}
             >
               Enterprise Solutions
@@ -107,9 +116,13 @@ export default function Navbar() {
                 activeSection === item.id
                   ? isDarkTheme 
                     ? "text-blue-400 font-semibold"
+                    : isCustomTheme
+                    ? "text-[#36558F] font-semibold"
                     : "text-yellow-600 font-semibold"
                   : isDarkTheme
                   ? "text-slate-400 hover:text-white"
+                  : isCustomTheme
+                  ? "text-[#40798C] hover:text-[#36558F]"
                   : "text-amber-900 hover:text-amber-700"
               }`}
             >
@@ -117,7 +130,7 @@ export default function Navbar() {
               {activeSection === item.id && (
                 <span 
                   className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full animate-[pulse_2s_infinite] ${
-                    isDarkTheme ? "bg-blue-500" : "bg-yellow-500"
+                    isDarkTheme ? "bg-blue-500" : isCustomTheme ? "bg-[#36558F]" : "bg-yellow-500"
                   }`}
                 />
               )}
@@ -133,6 +146,8 @@ export default function Navbar() {
             className={`hidden md:block text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-sm transition-all shadow-sm cursor-pointer ${
               isDarkTheme
                 ? "text-white bg-blue-600 hover:bg-blue-700"
+                : isCustomTheme
+                ? "text-white bg-[#36558F] hover:bg-[#40798C]"
                 : "text-white bg-yellow-600 hover:bg-yellow-700"
             }`}
           >

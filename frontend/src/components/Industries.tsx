@@ -11,6 +11,7 @@ interface IndustryItem {
 export default function Industries() {
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
+  const isCustomTheme = theme === "custom";
 
   const sectors: IndustryItem[] = [
     { 
@@ -58,12 +59,12 @@ export default function Industries() {
       {/* Structural Title Section */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-20 relative z-10">
         <h2 className={`text-4xl font-bold tracking-tight sm:text-5xl transition-colors duration-300 ${
-          isDarkTheme ? "text-white" : "text-[#1F1300]"
+          isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
         }`}>
           Industries We Partner & Serve
         </h2>
         <p className={`text-base max-w-md mx-auto transition-colors duration-300 ${
-          isDarkTheme ? "text-slate-400" : "text-amber-900"
+          isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-900"
         }`}>
           Delivering secure compliance and institutional digital frameworks across core national domains.
         </p>
@@ -78,6 +79,8 @@ export default function Industries() {
           style={{
             backgroundImage: isDarkTheme
               ? "linear-gradient(to right, #030014, rgba(3, 0, 20, 0.7), transparent)"
+              : isCustomTheme
+              ? "linear-gradient(to right, #FAF9F6, rgba(250, 249, 246, 0.7), transparent)"
               : "linear-gradient(to right, #f1e8b8, rgba(241, 232, 184, 0.7), transparent)"
           }}
         />
@@ -86,6 +89,8 @@ export default function Industries() {
           style={{
             backgroundImage: isDarkTheme
               ? "linear-gradient(to left, #030014, rgba(3, 0, 20, 0.7), transparent)"
+              : isCustomTheme
+              ? "linear-gradient(to left, #FAF9F6, rgba(250, 249, 246, 0.7), transparent)"
               : "linear-gradient(to left, #f1e8b8, rgba(241, 232, 184, 0.7), transparent)"
           }}
         />
@@ -93,21 +98,27 @@ export default function Industries() {
         {/* SLIDING RAIL LAYER */}
         <div className="flex w-max gap-8 animate-infinite-slider hover:[animation-play-state:paused] cursor-pointer py-2">
           {seamlessLoopTrack.map((item, idx) => {
-            const bgColor = isDarkTheme ? "#0A0726" : "#fef3c7";
+            const bgColor = isDarkTheme ? "#0A0726" : isCustomTheme ? "#DAF0EE" : "#fef3c7";
             const borderColor = isDarkTheme 
               ? "rgba(34, 211, 238, 0.1)"
+              : isCustomTheme
+              ? "rgba(64, 121, 140, 0.2)"
               : "rgba(217, 119, 6, 0.2)";
             const hoverBorderColor = isDarkTheme
               ? "rgba(34, 211, 238, 0.5)"
+              : isCustomTheme
+              ? "rgba(54, 85, 143, 0.5)"
               : "rgba(217, 119, 6, 0.5)";
             const shadowColor = isDarkTheme
               ? "0_0_25px_rgba(34,211,238,0.2)"
+              : isCustomTheme
+              ? "0_0_25px_rgba(54,85,143,0.2)"
               : "0_0_25px_rgba(217,119,6,0.2)";
-            const iconBgColor = isDarkTheme ? "rgba(13, 42, 74, 0.5)" : "rgba(217, 119, 6, 0.15)";
-            const iconBorderColor = isDarkTheme ? "rgba(6, 182, 212, 0.3)" : "rgba(217, 119, 6, 0.3)";
-            const iconColor = isDarkTheme ? "#06b6d4" : "#d97706";
-            const textColor = isDarkTheme ? "#ffffff" : "#1F1300";
-            const subTextColor = isDarkTheme ? "#cbd5e1" : "#92400e";
+            const iconBgColor = isDarkTheme ? "rgba(13, 42, 74, 0.5)" : isCustomTheme ? "rgba(218, 240, 238, 0.6)" : "rgba(217, 119, 6, 0.15)";
+            const iconBorderColor = isDarkTheme ? "rgba(6, 182, 212, 0.3)" : isCustomTheme ? "rgba(54, 85, 143, 0.3)" : "rgba(217, 119, 6, 0.3)";
+            const iconColor = isDarkTheme ? "#06b6d4" : isCustomTheme ? "#36558F" : "#d97706";
+            const textColor = isDarkTheme ? "#ffffff" : isCustomTheme ? "#1A2530" : "#1F1300";
+            const subTextColor = isDarkTheme ? "#cbd5e1" : isCustomTheme ? "#40798C" : "#92400e";
 
             return (
               <div
@@ -119,7 +130,7 @@ export default function Industries() {
                 className="w-[290px] h-[130px] border rounded-2xl p-6 flex items-center gap-5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:-translate-y-1 flex-shrink-0"
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = hoverBorderColor;
-                  (e.currentTarget as HTMLElement).style.boxShadow = `0 0 25px ${isDarkTheme ? "rgba(34,211,238,0.2)" : "rgba(217,119,6,0.2)"}`;
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 0 25px ${isDarkTheme ? "rgba(34,211,238,0.2)" : isCustomTheme ? "rgba(54,85,143,0.2)" : "rgba(217,119,6,0.2)"}`;
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = borderColor;
@@ -134,12 +145,14 @@ export default function Industries() {
                     color: iconColor,
                     boxShadow: isDarkTheme 
                       ? "0_0_15px_rgba(34,211,238,0.15)"
+                      : isCustomTheme
+                      ? "0_0_15px_rgba(54,85,143,0.15)"
                       : "0_0_15px_rgba(217,119,6,0.15)"
                   }}
                   className="w-14 h-14 rounded-xl border flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
                 >
                   <svg 
-                    className={`w-6 h-6 filter ${isDarkTheme ? "drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" : "drop-shadow-[0_0_8px_rgba(217,119,6,0.6)]"}`}
+                    className={`w-6 h-6 filter ${isDarkTheme ? "drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" : isCustomTheme ? "drop-shadow-[0_0_8px_rgba(54,85,143,0.6)]" : "drop-shadow-[0_0_8px_rgba(217,119,6,0.6)]"}`}
                     fill="none" 
                     stroke="currentColor" 
                     strokeWidth="1.75" 

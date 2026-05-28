@@ -41,17 +41,17 @@
 
   .custom,
   [data-theme="custom"] {
-    /* Custom theme colors - EDIT THESE VALUES */
-    --color-bg-primary: #1a1a2e;
-    --color-bg-start: #16213e;
-    --color-bg-end: #0f3460;
-    --color-text-primary: #eaeaea;
-    --color-text-secondary: #b8b8b8;
-    --color-accent-primary: #e94560;
-    --color-accent-secondary: #f39c12;
-    --color-accent-tertiary: #e94560;
-    --color-border: rgba(233, 69, 96, 0.2);
-    --color-navbar-bg: rgba(26, 26, 46, 0.9);
+    /* Custom theme colors - Professional Slate/Steel Blue on Cream Background */
+    --color-bg-primary: #FAF9F6;
+    --color-bg-start: #FFFFFF;
+    --color-bg-end: #EBF1F0;
+    --color-text-primary: #1A2530;
+    --color-text-secondary: #36558F;
+    --color-accent-primary: #36558F;
+    --color-accent-secondary: #40798C;
+    --color-accent-tertiary: #DAF0EE;
+    --color-border: rgba(64, 121, 140, 0.2);
+    --color-navbar-bg: rgba(218, 240, 238, 0.95);
   }
 
   html {
@@ -141,7 +141,8 @@
 }
 
 .dark-overlay {
-  background: rgba(3, 0, 20, 0.5);
+  background: radial-gradient(circle at center, rgba(3, 0, 20, 0.55) 0%, rgba(3, 0, 20, 0.8) 100%);
+  backdrop-filter: blur(4px) saturate(1.1);
 }
 
 .light-overlay {
@@ -149,5 +150,6 @@
 }
 
 .custom-overlay {
-  background: rgba(26, 26, 46, 0.5);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.45) 0%, rgba(218, 240, 238, 0.85) 100%);
+  backdrop-filter: blur(5px) saturate(1.15);
 }
