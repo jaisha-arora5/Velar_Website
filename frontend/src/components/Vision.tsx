@@ -9,13 +9,15 @@ export default function Vision() {
 
   const founders = [
     {
-      name: "Founder Name One",
-      role: "Co-Founder & Chief Architect",
-      note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id odio placerat, convallis neque quis, interdum leo. Nam hendrerit urna nibh, eget sagittis erat varius non.",
+      name: "Nehal Bharti",
+      role: "Co-Founder & Co-CEO",
+      image: "/Nehal_Bharti.jpeg",
+      note: `Enterprise client executive with over five years of experience driving retention, strategic partnerships, and AI-powered SaaS solutions across EdTech and US HealthTech. As Co-Founder & Co-CEO of Velar Info Private Limited, she bridges the gap between emerging AI capabilities and enterprise transformation. Today, she leads the company's strategic growth and innovation initiatives, delivering intelligent, scalable, and impactful AI solutions tailored for public sector organizations.`,
     },
     {
-      name: "Founder Name Two",
-      role: "Co-Founder & Strategy Lead",
+      name: "Anu Arora",
+      role: "Co-Founder & Co-CEO",
+      image: null,
       note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id odio placerat, convallis neque quis, interdum leo. Nam hendrerit urna nibh, eget sagittis erat varius non.",
     }
   ];
@@ -51,7 +53,7 @@ export default function Vision() {
               
               {/* VERTICAL PORTRAIT CONTAINER (aspect optimized to fit in single frame) */}
               <div 
-                className={`w-full aspect-[16/10] relative overflow-hidden flex items-center justify-center flex-shrink-0 border-b ${
+                className={`w-full aspect-[12/10] relative overflow-hidden flex items-center justify-center flex-shrink-0 border-b ${
                   isDarkTheme
                     ? "bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-white/5 text-slate-700"
                     : isCustomTheme
@@ -59,9 +61,17 @@ export default function Vision() {
                     : "bg-gradient-to-br from-yellow-100 to-yellow-50 border-yellow-200 text-amber-700"
                 }`}
               >
-                <div className="absolute inset-0 flex items-center justify-center font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-center px-4">
-                  [ Photo Placeholder ]
-                </div>
+                {founder.image ? (
+                  <img 
+                    src={founder.image} 
+                    alt={founder.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-center px-4">
+                    [ Photo Placeholder ]
+                  </div>
+                )}
                 
                 {/* Absolute Name & Role Overlay */}
                 <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t z-10 ${
@@ -89,9 +99,7 @@ export default function Vision() {
                   : "from-transparent to-yellow-50/40"
               }`}>
                 <div className="space-y-1.5">
-                  <h4 className={`text-[8px] sm:text-[9px] font-mono uppercase tracking-widest ${
-                    isDarkTheme ? "text-slate-500" : isCustomTheme ? "text-[#40798C]" : "text-amber-700"
-                  }`}>Founder's Statement</h4>
+                  
                   <p className={`text-[11px] sm:text-xs leading-relaxed italic font-medium transition-colors duration-300 ${
                     isDarkTheme ? "text-slate-300" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
                   }`}>

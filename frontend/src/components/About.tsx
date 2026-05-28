@@ -39,7 +39,7 @@ export default function About() {
         
      
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side: Tech Graphics Placeholder */}
+          {/* Left Side: Tech Graphics - AI PHOTO */}
           <div 
             style={{
               backgroundColor: isDarkTheme ? "#0A0726" : isCustomTheme ? "#FAF9F6" : "#fef3c7",
@@ -51,38 +51,11 @@ export default function About() {
             }}
             className={`relative aspect-video lg:aspect-square w-full border rounded-2xl overflow-hidden shadow-2xl group hover:border-opacity-50 transition-all duration-300`}
           >
-            <div className={`absolute inset-0 bg-gradient-to-br pointer-events-none ${
-              isDarkTheme 
-                ? "from-blue-600/10 via-transparent to-cyan-500/5"
-                : isCustomTheme
-                ? "from-[#36558F]/10 via-transparent to-[#DAF0EE]/10"
-                : "from-amber-200/15 via-transparent to-amber-100/5"
-            }`} />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-              <div 
-                style={{
-                  backgroundColor: isDarkTheme 
-                    ? "rgba(13, 42, 74, 0.2)" 
-                    : isCustomTheme 
-                    ? "rgba(218, 240, 238, 0.6)" 
-                    : "rgba(217, 119, 6, 0.15)",
-                  borderColor: isDarkTheme 
-                    ? "rgba(6, 182, 212, 0.3)" 
-                    : isCustomTheme 
-                    ? "rgba(64, 121, 140, 0.4)" 
-                    : "rgba(217, 119, 6, 0.3)",
-                  color: isDarkTheme ? "#06b6d4" : isCustomTheme ? "#36558F" : "#d97706"
-                }}
-                className="w-16 h-16 rounded-full border flex items-center justify-center mb-4 animate-pulse"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <span className={`text-xs font-mono tracking-widest uppercase ${
-                isDarkTheme ? "text-slate-500" : isCustomTheme ? "text-[#40798C]" : "text-amber-700"
-              }`}>Secure Infrastructure Stream</span>
-            </div>
+            <img 
+              src="/AI-PHOTO-1.JPG" 
+              alt="Velar Enterprise AI Infrastructure" 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
 
           {/* Right Side: Text & Corporate Mission Narrative */}

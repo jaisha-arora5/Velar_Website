@@ -237,7 +237,7 @@ export default function Contact() {
                     <p className={`text-xs font-medium mt-0.5 transition-colors ${
                       isDarkTheme ? "text-white hover:text-cyan-400" : isCustomTheme ? "text-[#36558F] hover:text-[#40798C]" : "text-[#1F1300] hover:text-yellow-700"
                     }`}>
-                      <a href="tel:+911204000000">+91 (120) 400-0000</a>
+                      <a href="tel:+91-9811051060">+91-9811051060</a>
                     </p>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export default function Contact() {
                     <p className={`text-xs font-medium mt-0.5 transition-colors ${
                       isDarkTheme ? "text-white hover:text-cyan-400" : isCustomTheme ? "text-[#36558F] hover:text-[#40798C]" : "text-[#1F1300] hover:text-yellow-700"
                     }`}>
-                      <a href="mailto:briefing@velar.ai">briefing@velar.ai</a>
+                      <a href="mailto:sales@velarinfo.com">sales@velarinfo.com</a>
                     </p>
                   </div>
                 </div>

@@ -101,7 +101,7 @@ export default function Navbar() {
                 isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
               }`}
             >
-              Enterprise Solutions
+              Info Pvt LTD
             </span>
           </div>
         </div>

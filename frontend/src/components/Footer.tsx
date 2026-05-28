@@ -47,7 +47,7 @@ export default function Footer() {
                 isDarkTheme ? "text-slate-500" : isCustomTheme ? "text-[#40798C]" : "text-amber-700"
               }`}
             >
-              Enterprise Solutions
+              Info Pvt LTD
             </span>
           </div>
         </div>
