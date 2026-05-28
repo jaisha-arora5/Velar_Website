@@ -22,6 +22,21 @@ export default function Hero() {
     <section 
       className="w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 relative overflow-hidden transition-colors duration-300"
     >
+      {/* Background Video Container - Semicircular */}
+      <div className="hero-video-container">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="hero-video"
+        >
+          <source src="/Videos/HeroVid.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay to lighten the video */}
+        <div className={`hero-video-overlay ${isDarkTheme ? 'dark-overlay' : 'light-overlay'}`}></div>
+      </div>
+
       {/* Background Decorative Ambient Flares */}
       {isDarkTheme ? (
         <>
@@ -38,7 +53,7 @@ export default function Hero() {
       {/* Main Hero Content Area */}
       <div className="max-w-4xl text-center space-y-6 relative z-10">
         <span 
-          className={`text-xs font-mono tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm animate-pulse transition-all duration-300 ${
+          className={`text-xs font-mono tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm animate-pulse transition-all duration-300 backdrop-blur-sm ${
             isDarkTheme
               ? "text-blue-400 bg-blue-950/40 border border-blue-900/30"
               : "text-amber-800 bg-amber-100/50 border border-amber-400/50"
@@ -47,9 +62,14 @@ export default function Hero() {
           Next-Generation Sovereign Intelligence
         </span>
         
-        <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight md:leading-[1.1] transition-colors duration-300 ${
+        <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight md:leading-[1.1] transition-colors duration-300 drop-shadow-lg ${
           isDarkTheme ? "text-white" : "text-[#1F1300]"
-        }`}>
+        }`}
+        style={{
+          textShadow: isDarkTheme 
+            ? '0 2px 10px rgba(0, 0, 0, 0.8)' 
+            : '0 2px 8px rgba(0, 0, 0, 0.2)'
+        }}>
           Secure, Autonomous <br className="hidden sm:inline" />
           AI Architecture <br />
           <span className={`bg-clip-text text-transparent transition-all duration-300 ${
@@ -61,9 +81,14 @@ export default function Hero() {
           </span>
         </h1>
 
-        <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed transition-colors duration-300 ${
+        <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed transition-colors duration-300 drop-shadow-md ${
           isDarkTheme ? "text-slate-400" : "text-amber-900"
-        }`}>
+        }`}
+        style={{
+          textShadow: isDarkTheme 
+            ? '0 1px 6px rgba(0, 0, 0, 0.8)' 
+            : '0 1px 4px rgba(0, 0, 0, 0.15)'
+        }}>
           Ring-fence your institutional data assets. Deploy localized, air-gapped LLM models and high-volume workflow automation protocols built for absolute data sovereignty.
         </p>
 

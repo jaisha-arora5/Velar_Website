@@ -70,3 +70,65 @@
 .animate-infinite-slider {
   animation: infiniteSliderScroll 35s linear infinite;
 }
+
+/* Hero Video Semicircular Background */
+.hero-video-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  max-width: 1400px;
+  max-height: 700px;
+  overflow: hidden;
+  clip-path: polygon(
+    0% 50%,
+    0% 100%,
+    100% 100%,
+    100% 50%,
+    99% 45%,
+    98% 35%,
+    96% 26%,
+    93% 18%,
+    89% 12%,
+    84% 7%,
+    78% 4%,
+    71% 2%,
+    50% 0%,
+    29% 2%,
+    22% 4%,
+    16% 7%,
+    11% 12%,
+    7% 18%,
+    4% 26%,
+    2% 35%,
+    1% 45%
+  );
+  pointer-events: none;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark-overlay {
+  background: rgba(3, 0, 20, 0.5);
+}
+
+.light-overlay {
+  background: rgba(241, 232, 184, 0.4);
+}
