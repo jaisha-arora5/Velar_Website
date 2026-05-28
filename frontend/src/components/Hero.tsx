@@ -4,7 +4,8 @@ import { useTheme } from "@/context/ThemeContext";
 
 export default function Hero() {
   const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
+  const isDarkTheme = theme === "dark" || theme === "custom";
+  const isLightTheme = theme === "light";
 
   // Smooth scroll handler function
   const scrollToSection = (id: string) => {
@@ -34,7 +35,13 @@ export default function Hero() {
           <source src="/Videos/HeroVid.mp4" type="video/mp4" />
         </video>
         {/* Overlay to lighten the video */}
-        <div className={`hero-video-overlay ${isDarkTheme ? 'dark-overlay' : 'light-overlay'}`}></div>
+        <div className={`hero-video-overlay ${
+          theme === "dark" 
+            ? "dark-overlay" 
+            : theme === "light" 
+            ? "light-overlay" 
+            : "custom-overlay"
+        }`}></div>
       </div>
 
       {/* Background Decorative Ambient Flares */}

@@ -39,6 +39,21 @@
     --color-navbar-bg: rgba(241, 232, 184, 0.9);
   }
 
+  .custom,
+  [data-theme="custom"] {
+    /* Custom theme colors - EDIT THESE VALUES */
+    --color-bg-primary: #1a1a2e;
+    --color-bg-start: #16213e;
+    --color-bg-end: #0f3460;
+    --color-text-primary: #eaeaea;
+    --color-text-secondary: #b8b8b8;
+    --color-accent-primary: #e94560;
+    --color-accent-secondary: #f39c12;
+    --color-accent-tertiary: #e94560;
+    --color-border: rgba(233, 69, 96, 0.2);
+    --color-navbar-bg: rgba(26, 26, 46, 0.9);
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
@@ -131,4 +146,8 @@
 
 .light-overlay {
   background: rgba(241, 232, 184, 0.4);
+}
+
+.custom-overlay {
+  background: rgba(26, 26, 46, 0.5);
 }
