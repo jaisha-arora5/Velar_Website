@@ -1,24 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 
 export default function Hero() {
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
-  const isLightTheme = theme === "light";
   const isCustomTheme = theme === "custom";
-
-  // Smooth scroll handler function
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const targetY = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: targetY - 20, // Clean offset to account for the fixed glass navbar
-        behavior: "smooth"
-      });
-    }
-  };
 
   return (
     <section 
@@ -37,10 +25,8 @@ export default function Hero() {
         </video>
         {/* Overlay to lighten the video */}
         <div className={`hero-video-overlay ${
-          theme === "dark" 
+          isDarkTheme 
             ? "dark-overlay" 
-            : theme === "light" 
-            ? "light-overlay" 
             : "custom-overlay"
         }`}></div>
       </div>
@@ -51,15 +37,10 @@ export default function Hero() {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
         </>
-      ) : isCustomTheme ? (
+      ) : (
         <>
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#DAF0EE]/30 blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#40798C]/15 blur-[120px] rounded-full pointer-events-none" />
-        </>
-      ) : (
-        <>
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-200/20 blur-[120px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-100/15 blur-[120px] rounded-full pointer-events-none" />
         </>
       )}
 
@@ -69,32 +50,26 @@ export default function Hero() {
           className={`text-xs font-mono tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm animate-pulse transition-all duration-300 backdrop-blur-sm ${
             isDarkTheme
               ? "text-blue-400 bg-blue-950/40 border border-blue-900/30"
-              : isCustomTheme
-              ? "text-[#36558F] bg-[#DAF0EE]/60 border border-[#40798C]/30"
-              : "text-amber-800 bg-amber-100/50 border border-amber-400/50"
+              : "text-[#36558F] bg-[#DAF0EE]/60 border border-[#40798C]/30"
           }`}
         >
           Next-Generation Sovereign Intelligence
         </span>
         
         <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight md:leading-[1.1] transition-colors duration-300 drop-shadow-lg ${
-          isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
+          isDarkTheme ? "text-white" : "text-[#1A2530]"
         }`}
         style={{
           textShadow: isDarkTheme 
             ? '0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 30px rgba(0, 0, 0, 0.7)' 
-            : isCustomTheme
-            ? '0 2px 12px rgba(255, 255, 255, 0.95), 0 4px 20px rgba(255, 255, 255, 0.85), 0 0 30px rgba(255, 255, 255, 0.6)'
-            : '0 2px 8px rgba(0, 0, 0, 0.2)'
+            : '0 2px 12px rgba(255, 255, 255, 0.95), 0 4px 20px rgba(255, 255, 255, 0.85), 0 0 30px rgba(255, 255, 255, 0.6)'
         }}>
           Secure, Autonomous <br className="hidden sm:inline" />
           AI Architecture <br />
           <span className={`bg-clip-text text-transparent transition-all duration-300 ${
             isDarkTheme
               ? "bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400"
-              : isCustomTheme
-              ? "bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
-              : "bg-gradient-to-r from-amber-700 via-amber-600 to-yellow-700"
+              : "bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
           }`}
           style={isCustomTheme ? {
             backgroundImage: 'linear-gradient(90deg, #36558F, #40798C, #36558F)',
@@ -109,14 +84,12 @@ export default function Hero() {
         </h1>
 
         <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed transition-colors duration-300 drop-shadow-md ${
-          isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
+          isDarkTheme ? "text-slate-400" : "text-[#1A2530]"
         }`}
         style={{
           textShadow: isDarkTheme 
             ? '0 1px 6px rgba(0, 0, 0, 0.8)' 
-            : isCustomTheme
-            ? '0 2px 10px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(255, 255, 255, 0.8)'
-            : '0 1px 4px rgba(0, 0, 0, 0.15)'
+            : '0 2px 10px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(255, 255, 255, 0.8)'
         }}>
           Ring-fence your institutional data assets. Deploy localized, air-gapped LLM models and high-volume workflow automation protocols built for absolute data sovereignty.
         </p>
@@ -124,33 +97,29 @@ export default function Hero() {
         {/* INTERACTIVE CALL TO ACTION BUTTONS */}
         <div className="flex flex-row items-center justify-center gap-3 pt-2">
           
-          {/* Button 1: Explore Solutions */}
-          <button
-            onClick={() => scrollToSection("solutions")}
+          {/* Link 1: Explore Solutions */}
+          <Link
+            href="/solutions"
             className={`text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all shadow-md cursor-pointer ${
               isDarkTheme
                 ? "text-[#030014] bg-cyan-400 hover:bg-cyan-300 shadow-cyan-500/10 hover:shadow-cyan-400/20"
-                : isCustomTheme
-                ? "text-white bg-[#36558F] hover:bg-[#40798C] shadow-[#36558F]/20 hover:shadow-[#36558F]/30"
-                : "text-white bg-amber-600 hover:bg-amber-700 shadow-amber-600/20 hover:shadow-amber-700/30"
+                : "text-white bg-[#36558F] hover:bg-[#40798C] shadow-[#36558F]/20 hover:shadow-[#36558F]/30"
             } hover:-translate-y-0.5`}
           >
             Explore Solutions
-          </button>
+          </Link>
 
-          {/* Button 2: Contact Us */}
-          <button
-            onClick={() => scrollToSection("contact")}
+          {/* Link 2: Contact Us */}
+          <Link
+            href="/contact"
             className={`text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 cursor-pointer ${
               isDarkTheme
                 ? "text-slate-300 bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-white/20"
-                : isCustomTheme
-                ? "text-[#36558F] bg-[#DAF0EE] hover:bg-[#c9e7e5] border border-[#b2dedb] hover:border-[#9accc9]"
-                : "text-[#1F1300] bg-amber-100 hover:bg-amber-200 border border-amber-400 hover:border-amber-500"
+                : "text-[#36558F] bg-[#DAF0EE] hover:bg-[#c9e7e5] border border-[#b2dedb] hover:border-[#9accc9]"
             }`}
           >
             Contact Us
-          </button>
+          </Link>
 
         </div>
       </div>

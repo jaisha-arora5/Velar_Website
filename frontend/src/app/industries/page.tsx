@@ -1,15 +1,13 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import HomeDetails from "@/components/HomeDetails";
+import Industries from "@/components/Industries";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function IndustriesPage() {
   return (
     <main className="relative min-h-screen selection:bg-[var(--color-accent-tertiary)] selection:text-white">
       <Navbar />
-      <div className="w-full pt-20">
-        <Hero />
-        <HomeDetails />
+      <div className="w-full min-h-screen pt-20">
+        <Industries />
       </div>
       <Footer />
     </main>

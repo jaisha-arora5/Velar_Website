@@ -12,104 +12,247 @@ export default function Vision() {
       name: "Nehal Bharti",
       role: "Co-Founder & Co-CEO",
       image: "/Nehal_Bharti.jpeg",
-      note: `Enterprise client executive with over five years of experience driving retention, strategic partnerships, and AI-powered SaaS solutions across EdTech and US HealthTech. As Co-Founder & Co-CEO of Velar Info Private Limited, she bridges the gap between emerging AI capabilities and enterprise transformation. Today, she leads the company's strategic growth and innovation initiatives, delivering intelligent, scalable, and impactful AI solutions tailored for public sector organizations.`,
+      note: `Enterprise client executive with over five years of experience driving retention, strategic partnerships, and AI-powered SaaS solutions across EdTech and US HealthTech. As Co-Founder & Co-CEO of Velar Info Private Limited, she bridges the gap between emerging AI capabilities and enterprise transformation. Today, she leads the company's strategic growth and innovation initiatives, delivering intelligent, secure, and impactful AI solutions tailored for public sector organizations.`,
     },
     {
       name: "Anu Arora",
       role: "Co-Founder & Co-CEO",
       image: null,
-      note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id odio placerat, convallis neque quis, interdum leo. Nam hendrerit urna nibh, eget sagittis erat varius non.",
+      note: "Operations and technology scaling expert with over six years of experience directing system deployments, compliance verification, and client delivery framework scaling. As Co-Founder & Co-CEO of Velar Info Private Limited, she oversees strategic deployment operations and ensures alignment with public sector standards. Under her co-leadership, Velar has scaled its local compute implementations to solve complex workflows for multiple regional organizations across India.",
     }
   ];
 
+  const values = [
+    {
+      title: "Absolute Sovereignty",
+      desc: "Protecting institutional and governmental data as critical national assets. We deploy all architectures locally to ensure zero external leakage.",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      )
+    },
+    {
+      title: "Relentless Local Innovation",
+      desc: "Developing custom, localized algorithms optimized specifically for on-premise servers and restricted intranet deployment scales.",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      )
+    },
+    {
+      title: "Operational Integrity",
+      desc: "Maintaining highly resilient systems with zero downtime and complete, auditable transaction logs that align with PSU mandates.",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      )
+    },
+    {
+      title: "Institutional Trust",
+      desc: "Establishing long-term collaborations with public sector organizations through transparency, physical audits, and dedicated on-site support.",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      )
+    }
+  ];
+
+  const accentColor = isDarkTheme ? "#06b6d4" : "#36558F";
+  const accentBg = isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(218, 240, 238, 0.6)";
+  const accentBorder = isDarkTheme ? "rgba(6, 182, 212, 0.4)" : "rgba(54, 85, 143, 0.3)";
+  const headingColor = isDarkTheme ? "text-white" : "text-[#1A2530]";
+  const textColor = isDarkTheme ? "text-slate-400" : "text-[#1A2530]";
+  const cardBg = isDarkTheme ? "#0A0726" : "#DAF0EE";
+  const cardBorder = isDarkTheme ? "rgba(34, 211, 238, 0.1)" : "rgba(64, 121, 140, 0.2)";
+
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 py-12 snap-start snap-always relative overflow-hidden transition-colors duration-300">
-      <div className="max-w-5xl w-full space-y-8 relative z-10">
+    <section className="w-full min-h-screen bg-transparent px-6 py-24 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-300">
+      
+      {/* Ambient Flares */}
+      <div className={`absolute top-1/4 right-1/4 w-96 h-96 blur-[120px] rounded-full pointer-events-none ${
+        isDarkTheme ? "bg-cyan-500/5" : "bg-[#36558F]/5"
+      }`} />
+
+      <div className="max-w-7xl w-full space-y-24 relative z-10">
         
-        {/* Unified Section Header */}
-        <div className="text-center space-y-2">
-          <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl transition-colors duration-300 ${
-            isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
-          }`}>
-            Meet the Architects of Velar
-          </h2>
+        {/* 1. VISION & MISSION BANNERS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Vision Block */}
+          <div 
+            style={{
+              backgroundColor: cardBg,
+              borderColor: cardBorder
+            }}
+            className="border p-8 rounded-2xl shadow-lg relative overflow-hidden group hover:scale-[1.01] transition-transform duration-300"
+          >
+            <div className={`absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl ${
+              isDarkTheme ? "bg-blue-600/10" : "bg-[#36558F]/10"
+            }`} />
+            <div className="space-y-4 relative z-10">
+              <span 
+                style={{
+                  color: accentColor,
+                  backgroundColor: accentBg,
+                  borderColor: accentBorder
+                }}
+                className="inline-block text-[9px] font-mono tracking-widest uppercase border px-2.5 py-0.5 rounded-full"
+              >
+                OUR VISION
+              </span>
+              <h2 className={`text-2xl font-bold tracking-tight ${headingColor}`}>
+                Securing National Data Infrastructure
+              </h2>
+              <p className={`text-sm leading-relaxed ${textColor}`}>
+                To become the most trusted AI-driven digital transformation partner for enterprises and public sector organizations across India, securing national data assets while driving operational excellence and autonomous intelligence.
+              </p>
+            </div>
+          </div>
+
+          {/* Mission Block */}
+          <div 
+            style={{
+              backgroundColor: cardBg,
+              borderColor: cardBorder
+            }}
+            className="border p-8 rounded-2xl shadow-lg relative overflow-hidden group hover:scale-[1.01] transition-transform duration-300"
+          >
+            <div className={`absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl ${
+              isDarkTheme ? "bg-cyan-500/10" : "bg-[#40798C]/10"
+            }`} />
+            <div className="space-y-4 relative z-10">
+              <span 
+                style={{
+                  color: accentColor,
+                  backgroundColor: accentBg,
+                  borderColor: accentBorder
+                }}
+                className="inline-block text-[9px] font-mono tracking-widest uppercase border px-2.5 py-0.5 rounded-full"
+              >
+                OUR MISSION
+              </span>
+              <h2 className={`text-2xl font-bold tracking-tight ${headingColor}`}>
+                Driving Actionable Operational Value
+              </h2>
+              <p className={`text-sm leading-relaxed ${textColor}`}>
+                To develop scalable, secure, and innovative AI-powered solutions that create measurable operational value, enhance decision-making speed, and drive efficiency in sovereign organizations through local processing.
+              </p>
+            </div>
+          </div>
+
         </div>
 
-        {/* PARALLEL SIDE-BY-SIDE GRID MATRIX - FORCED TO grid-cols-2 */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 items-stretch max-w-4xl mx-auto">
-          {founders.map((founder, idx) => (
-            <div 
-              key={idx}
-              style={{
-                backgroundColor: isDarkTheme ? "#0A0726" : isCustomTheme ? "#DAF0EE" : "#fef3c7",
-                borderColor: isDarkTheme 
-                  ? "rgba(34, 211, 238, 0.1)" 
-                  : isCustomTheme 
-                  ? "rgba(64, 121, 140, 0.2)" 
-                  : "rgba(217, 119, 6, 0.2)"
-              }}
-              className="w-full border rounded-2xl overflow-hidden shadow-2xl hover:border-opacity-50 transition-all duration-500 flex flex-col group"
-            >
-              
-              {/* VERTICAL PORTRAIT CONTAINER (aspect optimized to fit in single frame) */}
-              <div 
-                className={`w-full aspect-[12/10] relative overflow-hidden flex items-center justify-center flex-shrink-0 border-b ${
-                  isDarkTheme
-                    ? "bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-white/5 text-slate-700"
-                    : isCustomTheme
-                    ? "bg-gradient-to-br from-[#DAF0EE] to-[#FAF9F6] border-[#40798C]/20 text-[#40798C]"
-                    : "bg-gradient-to-br from-yellow-100 to-yellow-50 border-yellow-200 text-amber-700"
-                }`}
-              >
-                {founder.image ? (
-                  <img 
-                    src={founder.image} 
-                    alt={founder.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-center px-4">
-                    [ Photo Placeholder ]
-                  </div>
-                )}
-                
-                {/* Absolute Name & Role Overlay */}
-                <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t z-10 ${
-                  isDarkTheme
-                    ? "from-[#0A0726] to-transparent"
-                    : isCustomTheme
-                    ? "from-[#DAF0EE] to-transparent"
-                    : "from-yellow-100 to-transparent"
-                }`}>
-                  <h3 className={`text-base sm:text-lg font-bold tracking-tight ${
-                    isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
-                  }`}>{founder.name}</h3>
-                  <p className={`text-[10px] sm:text-xs font-medium mt-0.5 ${
-                    isDarkTheme ? "text-cyan-400" : isCustomTheme ? "text-[#36558F]" : "text-yellow-700"
-                  }`}>{founder.role}</p>
-                </div>
-              </div>
+        {/* 2. CORE VALUES SECTION */}
+        <div className="space-y-12">
+          <div className="text-center space-y-3">
+            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${headingColor}`}>
+              Our Core Institutional Values
+            </h2>
+            <p className={`text-xs sm:text-sm max-w-md mx-auto ${textColor}`}>
+              We operate under a rigid ethical framework dedicated to safeguarding data and providing absolute technological reliability.
+            </p>
+          </div>
 
-              {/* STATEMENT BLOCK (Bottom half of the card) */}
-              <div className={`p-4 sm:p-6 flex-1 flex flex-col justify-start bg-gradient-to-b ${
-                isDarkTheme
-                  ? "from-transparent to-[#050317]/40"
-                  : isCustomTheme
-                  ? "from-transparent to-[#FAF9F6]/40"
-                  : "from-transparent to-yellow-50/40"
-              }`}>
-                <div className="space-y-1.5">
-                  
-                  <p className={`text-[11px] sm:text-xs leading-relaxed italic font-medium transition-colors duration-300 ${
-                    isDarkTheme ? "text-slate-300" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
-                  }`}>
-                    "{founder.note}"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((val, idx) => (
+              <div 
+                key={idx}
+                style={{
+                  backgroundColor: cardBg,
+                  borderColor: cardBorder
+                }}
+                className="border p-6 rounded-2xl shadow-md flex flex-col gap-4 group hover:scale-[1.02] transition-transform duration-300"
+              >
+                <div 
+                  style={{
+                    backgroundColor: isDarkTheme ? "rgba(6, 182, 212, 0.1)" : "rgba(54, 85, 143, 0.1)",
+                    color: accentColor
+                  }}
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                >
+                  {val.icon}
+                </div>
+                <div className="space-y-2">
+                  <h3 className={`text-base font-bold tracking-tight ${headingColor}`}>
+                    {val.title}
+                  </h3>
+                  <p className={`text-xs leading-relaxed ${textColor}`}>
+                    {val.desc}
                   </p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
 
-            </div>
-          ))}
+        {/* 3. MEET THE ARCHITECTS */}
+        <div className="space-y-12 pt-8 border-t border-white/5">
+          <div className="text-center space-y-2">
+            <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl ${headingColor}`}>
+              Meet the Architects of Velar
+            </h2>
+            <p className={`text-xs sm:text-sm max-w-md mx-auto ${textColor}`}>
+              Leading Velar Info's strategic deployment operations, compliance alignment, and corporate scaling.
+            </p>
+          </div>
+
+          {/* Bios Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {founders.map((founder, idx) => (
+              <div 
+                key={idx}
+                style={{
+                  backgroundColor: cardBg,
+                  borderColor: cardBorder
+                }}
+                className="w-full border rounded-2xl overflow-hidden shadow-2xl hover:border-opacity-70 transition-all duration-500 flex flex-col group"
+              >
+                {/* Vertical Portrait Container */}
+                <div 
+                  className={`w-full aspect-[12/10] relative overflow-hidden flex items-center justify-center flex-shrink-0 border-b ${
+                    isDarkTheme
+                      ? "bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-white/5 text-slate-700"
+                      : "bg-[#DAF0EE] border-[#40798C]/20 text-[#40798C]"
+                  }`}
+                >
+                  {founder.image ? (
+                    <img 
+                      src={founder.image} 
+                      alt={founder.name} 
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/10">
+                      <svg className="w-12 h-12 text-slate-400 mb-2 opacity-55" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                      </svg>
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-slate-500">EXECUTIVE REPRESENTATION</span>
+                    </div>
+                  )}
+                  
+                  {/* Name and Role Overlay */}
+                  <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t z-10 ${
+                    isDarkTheme ? "from-[#0A0726] to-transparent" : "from-[#DAF0EE] to-transparent"
+                  }`}>
+                    <h3 className={`text-lg font-bold tracking-tight ${headingColor}`}>{founder.name}</h3>
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: accentColor }}>{founder.role}</p>
+                  </div>
+                </div>
+
+                {/* Note Block */}
+                <div className="p-6 flex-1 flex flex-col justify-start bg-gradient-to-b from-transparent to-[#050317]/10">
+                  <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${textColor}`}>
+                    "{founder.note}"
+                  </p>
+                </div>
+
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

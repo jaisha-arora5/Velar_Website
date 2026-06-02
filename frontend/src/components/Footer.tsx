@@ -1,23 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
+
+const footerLinks = [
+  { label: "Home", path: "/" },
+  { label: "About Us", path: "/about" },
+  { label: "Solutions", path: "/solutions" },
+  { label: "Industries", path: "/industries" },
+  { label: "Vision", path: "/vision" },
+  { label: "Contact", path: "/contact" },
+];
 
 export default function Footer() {
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
   const isCustomTheme = theme === "custom";
   const currentYear = new Date().getFullYear();
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const targetY = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: targetY - 20,
-        behavior: "smooth"
-      });
-    }
-  };
 
   return (
     <footer 
@@ -29,10 +28,13 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         
-        {/* LEFT BLOCK: BRAND IDENTITY MATRIX */}
-        <div className={`flex items-center gap-2.5 select-none transition-colors duration-300 ${
-          isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
-        }`}>
+        {/* LEFT BLOCK: BRAND IDENTITY */}
+        <Link 
+          href="/"
+          className={`flex items-center gap-2.5 select-none cursor-pointer transition-colors duration-300 ${
+            isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
+          }`}
+        >
           <div 
             className={`w-4 h-4 rounded-sm transform rotate-45 flex-shrink-0 ${
               isDarkTheme ? "bg-blue-600" : isCustomTheme ? "bg-[#36558F]" : "bg-yellow-500"
@@ -50,15 +52,15 @@ export default function Footer() {
               Info Pvt LTD
             </span>
           </div>
-        </div>
+        </Link>
 
-        {/* CENTER BLOCK: QUICK LINKS MATRIX */}
+        {/* CENTER BLOCK: QUICK LINKS */}
         <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-          {["home", "about", "solutions", "industries", "vision", "contact"].map((id) => (
-            <button
-              key={id}
-              onClick={() => scrollToSection(id)}
-              className={`text-xs font-medium capitalize transition-colors cursor-pointer duration-300 ${
+          {footerLinks.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`text-xs font-medium transition-colors cursor-pointer duration-300 ${
                 isDarkTheme
                   ? "text-slate-500 hover:text-cyan-400"
                   : isCustomTheme
@@ -66,12 +68,12 @@ export default function Footer() {
                   : "text-amber-800 hover:text-yellow-700"
               }`}
             >
-              {id === "why-us" ? "Why Choose Us" : id.replace("-", " ")}
-            </button>
+              {link.label}
+            </Link>
           ))}
         </nav>
 
-        {/* RIGHT BLOCK: LEGAL & COPYRIGHT REGISTRATION ROWS */}
+        {/* RIGHT BLOCK: LEGAL & COPYRIGHT */}
         <div className={`text-center md:text-right space-y-1 transition-colors duration-300 ${
           isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#40798C]" : "text-amber-800"
         }`}>

@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 
 interface SolutionCard {
   title: string;
   description: string;
   tag: string;
+  features: string[];
+  techStack: string;
+  deployment: string;
 }
 
 export default function Solutions() {
@@ -15,39 +18,126 @@ export default function Solutions() {
   const isCustomTheme = theme === "custom";
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
+  const [activeStep, setActiveStep] = useState<number>(0);
+
   const leftSolutions: SolutionCard[] = [
     {
-      title: "AI & Intelligent Automation",
-      description: "Automating high-volume administrative protocols, multi-layer form processing, and operational decision trees safely.",
-      tag: "Automation Engine"
+      title: "AI-Powered Enterprise Solutions",
+      description: "Secure, Retrieval-Augmented Generation (RAG) platforms configured to query, analyze, and index voluminous governmental documentation, directives, and operational records.",
+      tag: "Enterprise Cognitive RAG",
+      features: [
+        "Semantic search across scanned hand-written note-sheets",
+        "Automatic cross-reference of central gov guidelines and acts",
+        "Dual-level query validation to ensure compliance"
+      ],
+      techStack: "PostgreSQL pgvector, Python FastAPI, Qwen-72B",
+      deployment: "100% On-Premises Air-Gapped"
     },
     {
-      title: "Enterprise Workflow Solutions",
-      description: "Intelligent file routing, cross-department file movement synchronization, and automated note-sheet drafting systems.",
-      tag: "Core Workflow"
+      title: "Workflow Automation Systems",
+      description: "Intelligent engines that streamline file movement, draft official correspondence, and process multi-department note-sheets in absolute compliance with PSU protocols.",
+      tag: "Orchestration & Routing",
+      features: [
+        "AI-driven note-sheet pre-drafting and summary sheets",
+        "Adaptive file movement paths with bottleneck prediction",
+        "Automated digital signing and seal verification"
+      ],
+      techStack: "Next.js, Node.js, RabbitMQ, Docker",
+      deployment: "Hybrid Secure / Local Compute Nodes"
     },
     {
-      title: "AI Analytics & Reporting",
-      description: "Real-time system diagnostics, predictive infrastructure maintenance algorithms, and institutional reporting engines.",
-      tag: "Predictive BI"
+      title: "Intelligent Reporting & Analytics",
+      description: "Real-time system diagnostics, predictive infrastructure maintenance algorithms, and custom analytical dashboard platforms designed for CPSU administration.",
+      tag: "Decision intelligence BI",
+      features: [
+        "Real-time database querying using Natural Language (Text-to-SQL)",
+        "Predictive telemetry mapping for power grids and water supplies",
+        "Automated compliance audit log generation"
+      ],
+      techStack: "Apache Spark, Python, React, ClickHouse",
+      deployment: "On-Premises / Restricted Intranet"
     }
   ];
 
   const rightSolutions: SolutionCard[] = [
     {
-      title: "Generative AI Solutions",
-      description: "Secure, sovereign localized LLM integration for rapid official data queries and administrative content summarization.",
-      tag: "Sovereign LLM"
+      title: "Generative AI Applications",
+      description: "Tailored fine-tuned open-source LLMs trained on domain-specific terminology, specialized heavy engineering guidelines, or proprietary sector datasets.",
+      tag: "Domain Fine-Tuned LLMs",
+      features: [
+        "Localized vocabulary fine-tuning for technical blueprints",
+        "Secure prompt templates with automated censorship of PII",
+        "Offline API endpoint access for third-party system integrations"
+      ],
+      techStack: "PyTorch, Llama-3-70B, HuggingFace, CUDA",
+      deployment: "Dedicated On-Premise GPU Nodes"
     },
     {
-      title: "Digital Transformation Systems",
-      description: "Phased modernization architecture designed to migrate complex legacy enterprise data safely into cloud ecosystems.",
-      tag: "Modernization"
+      title: "Customized SaaS Platforms",
+      description: "High-performance, secure, and responsive web portals built from scratch to integrate with legacy software, databases, and operational frameworks.",
+      tag: "Bespoke SaaS Architecture",
+      features: [
+        "Role-based secure access control (RBAC) with single sign-on (SSO)",
+        "Extremely responsive and accessible (WCAG compliant) frontend",
+        "Modular widgets for custom monitoring and telemetry"
+      ],
+      techStack: "TypeScript, React, Next.js, TailWind CSS",
+      deployment: "Private Government Cloud / On-Premise"
     },
     {
-      title: "Customized Enterprise Platforms",
-      description: "Bespoke, modular technology hubs built from scratch to align perfectly with specific PSU compliance regulations.",
-      tag: "Bespoke Architecture"
+      title: "AI Chatbots & Virtual Assistants",
+      description: "Conversational agents deployed on internal networks to answer employee policy queries or provide automated assistance to citizen inquiries.",
+      tag: "Conversational Interface",
+      features: [
+        "Support for regional Indian languages (Vernacular AI NLP)",
+        "Zero dependency on external translation APIs",
+        "Pre-integrated policy directories for instant lookup"
+      ],
+      techStack: "Rasa NLP, Python, PyTorch, Node.js",
+      deployment: "Air-Gapped Intranet Nodes"
+    }
+  ];
+
+  const simulatorSteps = [
+    {
+      title: "1. Secure Ingestion & Parsing",
+      desc: "Raw documents (circulars, sheets, databases) are parsed locally. PII and metadata are stripped automatically in a secure sandbox.",
+      status: "Active Isolation",
+      logs: [
+        "INGEST: Parsing File: G_circular_2026.pdf",
+        "INGEST: Anonymizing employee IDs...",
+        "INGEST: 100% local buffer success."
+      ]
+    },
+    {
+      title: "2. Vector Indexing",
+      desc: "Text is chunked and embedded using on-premise embedding models, then index-mapped inside a local PostgreSQL vector database.",
+      status: "Local Sync Completed",
+      logs: [
+        "VECTOR: Generating 768-dim embeddings...",
+        "VECTOR: In-memory HNSW index updated.",
+        "VECTOR: Syncing database entries: OK"
+      ]
+    },
+    {
+      title: "3. Air-Gapped Inference",
+      desc: "A fine-tuned localized Llama model queries the vectorized context. Zero data queries exit the internal network firewall.",
+      status: "Sovereign Query Success",
+      logs: [
+        "MODEL: Ingesting query template...",
+        "MODEL: Matching local vector context...",
+        "MODEL: Response parsed with 98.4% accuracy."
+      ]
+    },
+    {
+      title: "4. Audited Output Delivery",
+      desc: "The output is double-checked for compliance against institutional rules and safely returned to the user dashboard.",
+      status: "Compliance Certified",
+      logs: [
+        "AUDIT: Policy compliance check: PASS",
+        "AUDIT: System logs encrypted and saved.",
+        "SYS: Output dispatched to local client UI."
+      ]
     }
   ];
 
@@ -146,15 +236,15 @@ export default function Solutions() {
   const accentColor = isDarkTheme ? "#06b6d4" : isCustomTheme ? "#36558F" : "#d97706";
   const wireColor = isDarkTheme ? "rgba(59, 130, 246, 0.25)" : isCustomTheme ? "rgba(64, 121, 140, 0.2)" : "rgba(217, 119, 6, 0.25)";
   const wireDashColor = isDarkTheme ? "rgba(59, 130, 246, 0.3)" : isCustomTheme ? "rgba(64, 121, 140, 0.25)" : "rgba(217, 119, 6, 0.3)";
+  const headingColor = isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]";
+  const textColor = isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900";
 
   return (
-    <section className={`w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 py-32 relative overflow-hidden transition-colors duration-300`}>
+    <section className="w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 py-24 relative overflow-hidden transition-colors duration-300">
       
       {/* Header Container Block */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 relative z-10">
-        <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight transition-colors duration-300 ${
-          isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
-        }`}>
+        <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight transition-colors duration-300 ${headingColor}`}>
           Our Suite of Enterprise Solutions
         </h2>
       </div>
@@ -230,11 +320,25 @@ export default function Solutions() {
                 }`}>
                   {sol.title}
                 </h3>
-                <p className={`text-xs leading-relaxed transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
-                }`}>
+                <p className={`text-xs leading-relaxed transition-colors duration-300 ${textColor}`}>
                   {sol.description}
                 </p>
+
+                {/* Features List */}
+                <ul className="space-y-1.5 pt-2 border-t border-white/5">
+                  {sol.features.map((feat, fIdx) => (
+                    <li key={fIdx} className="text-[11px] flex items-start gap-2 text-slate-500">
+                      <span style={{ color: accentColor }} className="font-bold">•</span>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tech Specs */}
+                <div className="pt-2 flex flex-col gap-1 text-[10px] font-mono text-slate-500">
+                  <div><span className="font-bold">Tech:</span> {sol.techStack}</div>
+                  <div><span className="font-bold">Deploy:</span> {sol.deployment}</div>
+                </div>
               </div>
             </div>
           ))}
@@ -345,17 +449,119 @@ export default function Solutions() {
                 }`}>
                   {sol.title}
                 </h3>
-                <p className={`text-xs leading-relaxed transition-colors duration-300 ${
-                  isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900"
-                }`}>
+                <p className={`text-xs leading-relaxed transition-colors duration-300 ${textColor}`}>
                   {sol.description}
                 </p>
+
+                {/* Features List */}
+                <ul className="space-y-1.5 pt-2 border-t border-white/5">
+                  {sol.features.map((feat, fIdx) => (
+                    <li key={fIdx} className="text-[11px] flex items-start gap-2 text-slate-500">
+                      <span style={{ color: accentColor }} className="font-bold">•</span>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tech Specs */}
+                <div className="pt-2 flex flex-col gap-1 text-[10px] font-mono text-slate-500">
+                  <div><span className="font-bold">Tech:</span> {sol.techStack}</div>
+                  <div><span className="font-bold">Deploy:</span> {sol.deployment}</div>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
       </div>
+
+      {/* SOVEREIGN DEPLOYMENT FLOW SIMULATOR */}
+      <div className="max-w-7xl w-full mt-32 border-t border-white/5 pt-24 space-y-12 relative z-10">
+        
+        <div className="text-center space-y-3">
+          <span 
+            style={{
+              color: accentColor,
+              backgroundColor: isDarkTheme ? "rgba(6, 182, 212, 0.1)" : isCustomTheme ? "rgba(54, 85, 143, 0.1)" : "rgba(217, 119, 6, 0.1)",
+              borderColor: isDarkTheme ? "rgba(6, 182, 212, 0.2)" : isCustomTheme ? "rgba(54, 85, 143, 0.2)" : "rgba(217, 119, 6, 0.2)"
+            }}
+            className="inline-block text-[10px] font-mono tracking-wider uppercase border px-3 py-1 rounded-full"
+          >
+            Processing Pipeline
+          </span>
+          <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${headingColor}`}>
+            Sovereign AI Deployment Flow Simulator
+          </h2>
+          <p className={`text-xs sm:text-sm max-w-lg mx-auto ${textColor}`}>
+            Interactive simulator showcasing step-by-step query execution across a ring-fenced enterprise network infrastructure.
+          </p>
+        </div>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-stretch">
+          {simulatorSteps.map((step, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveStep(idx)}
+              style={{
+                backgroundColor: activeStep === idx ? (isDarkTheme ? "#0A0726" : isCustomTheme ? "#DAF0EE" : "#fef3c7") : "transparent",
+                borderColor: activeStep === idx ? accentColor : (isDarkTheme ? "rgba(34, 211, 238, 0.1)" : isCustomTheme ? "rgba(64, 121, 140, 0.2)" : "rgba(217, 119, 6, 0.2)")
+              }}
+              className="text-left border p-6 rounded-2xl cursor-pointer flex flex-col justify-between hover:scale-[1.01] transition-all duration-300 shadow-sm"
+            >
+              <div className="space-y-3">
+                <div className={`text-xs font-bold font-mono ${
+                  activeStep === idx ? (isDarkTheme ? "text-cyan-400" : isCustomTheme ? "text-[#36558F]" : "text-yellow-600") : "text-slate-500"
+                }`}>
+                  {step.title}
+                </div>
+                <p className={`text-xs leading-relaxed ${textColor}`}>
+                  {step.desc}
+                </p>
+              </div>
+              <div 
+                className={`text-[9px] font-mono uppercase tracking-widest mt-6 py-1 px-2.5 rounded border self-start ${
+                  activeStep === idx 
+                    ? (isDarkTheme ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" : isCustomTheme ? "bg-[#36558F]/10 text-[#36558F] border-[#36558F]/30" : "bg-yellow-500/10 text-yellow-600 border-yellow-500/30") 
+                    : "bg-slate-550/5 text-slate-500 border-white/5"
+                }`}
+              >
+                {step.status}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Selected Step Code Sandbox Terminal */}
+        <div 
+          style={{
+            backgroundColor: "#030014",
+            borderColor: "rgba(255, 255, 255, 0.1)"
+          }}
+          className="w-full border rounded-2xl overflow-hidden shadow-2xl flex flex-col min-h-[220px]"
+        >
+          <div className="bg-slate-950 px-4 py-3 flex items-center justify-between border-b border-white/5">
+            <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase">
+              Isolated Pipeline Execution Logs &bull; Step {activeStep + 1}
+            </span>
+            <div className="flex gap-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest">ACTIVE</span>
+            </div>
+          </div>
+
+          <div className="p-6 font-mono text-xs text-green-400 space-y-2 flex-1 flex flex-col justify-center">
+            {simulatorSteps[activeStep].logs.map((log, idx) => (
+              <div key={idx} className="flex gap-2">
+                <span className="text-slate-600">&gt;&gt;</span>
+                <span>{log}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
     </section>
   );
 }

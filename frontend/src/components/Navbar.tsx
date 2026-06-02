@@ -1,64 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
-  { label: "Home", id: "home" },
-  { label: "About Us", id: "about" },
-  { label: "Solutions", id: "solutions" },
-  { label: "Industries", id: "industries" },
-  { label: "Vision", id: "vision" },
-  { label: "Contact", id: "contact" },
+  { label: "Home", path: "/" },
+  { label: "About Us", path: "/about" },
+  { label: "Solutions", path: "/solutions" },
+  { label: "Industries", path: "/industries" },
+  { label: "Vision", path: "/vision" },
+  { label: "Contact", path: "/contact" },
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
   const { theme } = useTheme();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // 1. Safe Guard: If user forces scroll to the absolute bottom, snap directly to contact
-      const triggerBottomThreshold = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
-      if (triggerBottomThreshold) {
-        setActiveSection("contact");
-        return;
-      }
-
-      // 2. Dynamic Viewport Matrix tracking
-      for (const item of navItems) {
-        const element = document.getElementById(item.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          
-          // If the top of the section has scrolled up past the middle-upper window zone
-          // but the bottom hasn't left the top of the screen yet, it's the active view!
-          if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 3) {
-            setActiveSection(item.id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial pass coordinate check
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const targetY = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: targetY - 20, // Small 20px offset offset to keep spacing gorgeous below the glass navbar
-        behavior: "smooth"
-      });
-    }
-  };
-
+  
   const isDarkTheme = theme === "dark";
   const isCustomTheme = theme === "custom";
 
@@ -81,14 +40,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         {/* LOGO LINK */}
-        <div 
+        <Link 
+          href="/"
           className={`flex items-center gap-2.5 cursor-pointer select-none transition-colors duration-300 ${
             isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]"
           }`}
-          onClick={() => scrollToSection("home")}
         >
           <div 
-            className={`w-5 h-5 rounded-sm transform rotate-45 flex-shrink-0 ${
+            className={`w-5 h-5 rounded-sm transform rotate-45 shrink-0 ${
               isDarkTheme ? "bg-blue-600" : isCustomTheme ? "bg-[#36558F]" : "bg-yellow-500"
             }`}
           />
@@ -104,45 +63,48 @@ export default function Navbar() {
               Info Pvt LTD
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* TRACKING LINKS MESH */}
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`text-sm font-medium transition-all relative py-2.5 cursor-pointer duration-300 ${
-                activeSection === item.id
-                  ? isDarkTheme 
-                    ? "text-blue-400 font-semibold"
+          {navItems.map((item) => {
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`text-sm font-medium transition-all relative py-2.5 cursor-pointer duration-300 ${
+                  isActive
+                    ? isDarkTheme 
+                      ? "text-blue-400 font-semibold"
+                      : isCustomTheme
+                      ? "text-[#36558F] font-semibold"
+                      : "text-yellow-600 font-semibold"
+                    : isDarkTheme
+                    ? "text-slate-400 hover:text-white"
                     : isCustomTheme
-                    ? "text-[#36558F] font-semibold"
-                    : "text-yellow-600 font-semibold"
-                  : isDarkTheme
-                  ? "text-slate-400 hover:text-white"
-                  : isCustomTheme
-                  ? "text-[#40798C] hover:text-[#36558F]"
-                  : "text-amber-900 hover:text-amber-700"
-              }`}
-            >
-              {item.label}
-              {activeSection === item.id && (
-                <span 
-                  className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full animate-[pulse_2s_infinite] ${
-                    isDarkTheme ? "bg-blue-500" : isCustomTheme ? "bg-[#36558F]" : "bg-yellow-500"
-                  }`}
-                />
-              )}
-            </button>
-          ))}
+                    ? "text-[#40798C] hover:text-[#36558F]"
+                    : "text-amber-900 hover:text-amber-700"
+                }`}
+              >
+                {item.label}
+                {isActive && (
+                  <span 
+                    className={`absolute bottom-0 left-0 w-full h-0.5 rounded-full animate-[pulse_2s_infinite] ${
+                      isDarkTheme ? "bg-blue-500" : isCustomTheme ? "bg-[#36558F]" : "bg-yellow-500"
+                    }`}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* ACTION CALL CTA & THEME TOGGLE */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <button 
-            onClick={() => scrollToSection("contact")}
+          <Link 
+            href="/contact"
             className={`hidden md:block text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-sm transition-all shadow-sm cursor-pointer ${
               isDarkTheme
                 ? "text-white bg-blue-600 hover:bg-blue-700"
@@ -152,7 +114,7 @@ export default function Navbar() {
             }`}
           >
             Request Briefing
-          </button>
+          </Link>
         </div>
       </div>
     </header>

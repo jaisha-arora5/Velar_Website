@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-type Theme = "dark" | "light" | "custom";
+type Theme = "dark" | "custom";
 
 interface ThemeContextType {
   theme: Theme;
@@ -17,7 +17,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Sync theme changes with HTML document attributes safely
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove("light", "dark", "custom");
+    root.classList.remove("dark", "custom");
     root.classList.add(theme);
     root.setAttribute("data-theme", theme);
   }, [theme]);
