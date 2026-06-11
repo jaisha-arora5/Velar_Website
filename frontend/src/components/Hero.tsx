@@ -12,7 +12,7 @@ export default function Hero() {
     <section 
       className="w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 relative overflow-hidden transition-colors duration-300"
     >
-      {/* Background Video Container - Semicircular */}
+      
       <div className="hero-video-container">
         <video
           autoPlay
@@ -21,7 +21,7 @@ export default function Hero() {
           playsInline
           className="hero-video"
         >
-          <source src="/Videos/HeroVid.mp4" type="video/mp4" />
+          <source src="/Videos/VID_INTERN_2.mp4" type="video/mp4" />
         </video>
         {/* Overlay to lighten the video */}
         <div className={`hero-video-overlay ${

@@ -97,29 +97,7 @@
   max-width: 1400px;
   max-height: 700px;
   overflow: hidden;
-  clip-path: polygon(
-    0% 50%,
-    0% 100%,
-    100% 100%,
-    100% 50%,
-    99% 45%,
-    98% 35%,
-    96% 26%,
-    93% 18%,
-    89% 12%,
-    84% 7%,
-    78% 4%,
-    71% 2%,
-    50% 0%,
-    29% 2%,
-    22% 4%,
-    16% 7%,
-    11% 12%,
-    7% 18%,
-    4% 26%,
-    2% 35%,
-    1% 45%
-  );
+  border-radius: 0 0 40px 40px;
   pointer-events: none;
 }
 
@@ -141,8 +119,8 @@
 }
 
 .dark-overlay {
-  background: radial-gradient(circle at center, rgba(3, 0, 20, 0.55) 0%, rgba(3, 0, 20, 0.8) 100%);
-  backdrop-filter: blur(4px) saturate(1.1);
+  background: radial-gradient(circle at center, rgba(3, 0, 20, 0.25) 0%, rgba(3, 0, 20, 0.45) 100%);
+  backdrop-filter: blur(1px) saturate(0.5);
 }
 
 .light-overlay {
@@ -150,6 +128,6 @@
 }
 
 .custom-overlay {
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.45) 0%, rgba(218, 240, 238, 0.85) 100%);
-  backdrop-filter: blur(5px) saturate(1.15);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(218, 240, 238, 0.12) 100%);
+  backdrop-filter: blur(2px) saturate(1.15);
 }
