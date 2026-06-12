@@ -79,7 +79,73 @@ export default function Vision() {
 
       <div className="max-w-7xl w-full space-y-24 relative z-10">
         
-        {/* 1. VISION & MISSION BANNERS */}
+        {/* 1. MEET THE ARCHITECTS - MOVED TO TOP */}
+        <div className="space-y-12">
+          <div className="text-center space-y-2">
+            <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl ${headingColor}`}>
+              Meet the Architects of Velar
+            </h2>
+            <p className={`text-xs sm:text-sm max-w-md mx-auto ${textColor}`}>
+              Leading Velar Info's strategic deployment operations, compliance alignment, and corporate scaling.
+            </p>
+          </div>
+
+          {/* Bios Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {founders.map((founder, idx) => (
+              <div 
+                key={idx}
+                style={{
+                  backgroundColor: cardBg,
+                  borderColor: cardBorder
+                }}
+                className="w-full border rounded-2xl overflow-hidden shadow-2xl hover:border-opacity-70 transition-all duration-500 flex flex-col group"
+              >
+                {/* Vertical Portrait Container */}
+                <div 
+                  className={`w-full aspect-[12/10] relative overflow-hidden flex items-center justify-center flex-shrink-0 border-b ${
+                    isDarkTheme
+                      ? "bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-white/5 text-slate-700"
+                      : "bg-[#DAF0EE] border-[#40798C]/20 text-[#40798C]"
+                  }`}
+                >
+                  {founder.image ? (
+                    <img 
+                      src={founder.image} 
+                      alt={founder.name} 
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/10">
+                      <svg className="w-12 h-12 text-slate-400 mb-2 opacity-55" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                      </svg>
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-slate-500">EXECUTIVE REPRESENTATION</span>
+                    </div>
+                  )}
+                  
+                  {/* Name and Role Overlay */}
+                  <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t z-10 ${
+                    isDarkTheme ? "from-[#0A0726] to-transparent" : "from-[#DAF0EE] to-transparent"
+                  }`}>
+                    <h3 className={`text-lg font-bold tracking-tight ${headingColor}`}>{founder.name}</h3>
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: accentColor }}>{founder.role}</p>
+                  </div>
+                </div>
+
+                {/* Note Block */}
+                <div className="p-6 flex-1 flex flex-col justify-start bg-gradient-to-b from-transparent to-[#050317]/10">
+                  <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${textColor}`}>
+                    "{founder.note}"
+                  </p>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 2. VISION & MISSION BANNERS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Vision Block */}
@@ -146,7 +212,7 @@ export default function Vision() {
 
         </div>
 
-        {/* 2. CORE VALUES SECTION */}
+        {/* 3. CORE VALUES SECTION */}
         <div className="space-y-12">
           <div className="text-center space-y-3">
             <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${headingColor}`}>
@@ -184,72 +250,6 @@ export default function Vision() {
                     {val.desc}
                   </p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 3. MEET THE ARCHITECTS */}
-        <div className="space-y-12 pt-8 border-t border-white/5">
-          <div className="text-center space-y-2">
-            <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl ${headingColor}`}>
-              Meet the Architects of Velar
-            </h2>
-            <p className={`text-xs sm:text-sm max-w-md mx-auto ${textColor}`}>
-              Leading Velar Info's strategic deployment operations, compliance alignment, and corporate scaling.
-            </p>
-          </div>
-
-          {/* Bios Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {founders.map((founder, idx) => (
-              <div 
-                key={idx}
-                style={{
-                  backgroundColor: cardBg,
-                  borderColor: cardBorder
-                }}
-                className="w-full border rounded-2xl overflow-hidden shadow-2xl hover:border-opacity-70 transition-all duration-500 flex flex-col group"
-              >
-                {/* Vertical Portrait Container */}
-                <div 
-                  className={`w-full aspect-[12/10] relative overflow-hidden flex items-center justify-center flex-shrink-0 border-b ${
-                    isDarkTheme
-                      ? "bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-white/5 text-slate-700"
-                      : "bg-[#DAF0EE] border-[#40798C]/20 text-[#40798C]"
-                  }`}
-                >
-                  {founder.image ? (
-                    <img 
-                      src={founder.image} 
-                      alt={founder.name} 
-                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/10">
-                      <svg className="w-12 h-12 text-slate-400 mb-2 opacity-55" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                      </svg>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-slate-500">EXECUTIVE REPRESENTATION</span>
-                    </div>
-                  )}
-                  
-                  {/* Name and Role Overlay */}
-                  <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t z-10 ${
-                    isDarkTheme ? "from-[#0A0726] to-transparent" : "from-[#DAF0EE] to-transparent"
-                  }`}>
-                    <h3 className={`text-lg font-bold tracking-tight ${headingColor}`}>{founder.name}</h3>
-                    <p className="text-xs font-semibold mt-0.5" style={{ color: accentColor }}>{founder.role}</p>
-                  </div>
-                </div>
-
-                {/* Note Block */}
-                <div className="p-6 flex-1 flex flex-col justify-start bg-gradient-to-b from-transparent to-[#050317]/10">
-                  <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${textColor}`}>
-                    "{founder.note}"
-                  </p>
-                </div>
-
               </div>
             ))}
           </div>

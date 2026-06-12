@@ -47,49 +47,41 @@ export default function Hero() {
       {/* Main Hero Content Area */}
       <div className="max-w-4xl text-center space-y-6 relative z-10">
         <span 
-          className={`text-xs font-mono tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm animate-pulse transition-all duration-300 backdrop-blur-sm ${
+          className={`text-xs font-mono tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-sm animate-pulse transition-all duration-300 backdrop-blur-sm animate-fade-in-up ${
             isDarkTheme
-              ? "text-blue-400 bg-blue-950/40 border border-blue-900/30"
-              : "text-[#36558F] bg-[#DAF0EE]/60 border border-[#40798C]/30"
+              ? "text-blue-400 bg-blue-950/60 border border-blue-900/40"
+              : "text-[#36558F] bg-[#DAF0EE]/70 border border-[#40798C]/40"
           }`}
         >
           Next-Generation Sovereign Intelligence
         </span>
         
-        <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight md:leading-[1.1] transition-colors duration-300 drop-shadow-lg ${
+        <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight md:leading-[1.1] transition-colors duration-300 drop-shadow-lg animate-fade-in-up-delay-1 ${
           isDarkTheme ? "text-white" : "text-[#1A2530]"
         }`}
         style={{
           textShadow: isDarkTheme 
-            ? '0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 30px rgba(0, 0, 0, 0.7)' 
-            : '0 2px 12px rgba(255, 255, 255, 0.95), 0 4px 20px rgba(255, 255, 255, 0.85), 0 0 30px rgba(255, 255, 255, 0.6)'
+            ? '0 2px 10px rgba(0, 0, 0, 0.95), 0 4px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.2)' 
+            : '0 2px 12px rgba(255, 255, 255, 0.98), 0 4px 20px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)'
         }}>
           Secure, Autonomous <br className="hidden sm:inline" />
           AI Architecture <br />
-          <span className={`bg-clip-text text-transparent transition-all duration-300 ${
+          <span className={`transition-all duration-300 ${
             isDarkTheme
-              ? "bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400"
-              : "bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"
-          }`}
-          style={isCustomTheme ? {
-            backgroundImage: 'linear-gradient(90deg, #36558F, #40798C, #36558F)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            filter: 'drop-shadow(0 0 8px rgba(64, 121, 140, 0.35))',
-            textShadow: 'none'
-          } : undefined}>
+              ? "text-cyan-400"
+              : "text-[#36558F]"
+          }`}>
             Engineered for the Enterprise
           </span>
         </h1>
 
-        <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed transition-colors duration-300 drop-shadow-md ${
-          isDarkTheme ? "text-slate-400" : "text-[#1A2530]"
+        <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed transition-colors duration-300 drop-shadow-md animate-fade-in-up-delay-2 ${
+          isDarkTheme ? "text-slate-300" : "text-[#1A2530]"
         }`}
         style={{
           textShadow: isDarkTheme 
-            ? '0 1px 6px rgba(0, 0, 0, 0.8)' 
-            : '0 2px 10px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(255, 255, 255, 0.8)'
+            ? '0 1px 6px rgba(0, 0, 0, 0.9)' 
+            : '0 2px 10px rgba(255, 255, 255, 0.98), 0 1px 4px rgba(255, 255, 255, 0.85)'
         }}>
           Ring-fence your institutional data assets. Deploy localized, air-gapped LLM models and high-volume workflow automation protocols built for absolute data sovereignty.
         </p>
