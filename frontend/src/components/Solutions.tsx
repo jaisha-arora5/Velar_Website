@@ -20,7 +20,7 @@ export default function Solutions() {
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const leftSolutions: SolutionCard[] = [
+  const allSolutions: SolutionCard[] = [
     {
       title: "AI-Powered Enterprise Solutions",
       description: "Secure, Retrieval-Augmented Generation (RAG) platforms configured to query, analyze, and index voluminous governmental documentation, directives, and operational records.",
@@ -56,10 +56,7 @@ export default function Solutions() {
       ],
       techStack: "Apache Spark, Python, React, ClickHouse",
       deployment: "On-Premises / Restricted Intranet"
-    }
-  ];
-
-  const rightSolutions: SolutionCard[] = [
+    },
     {
       title: "Generative AI Applications",
       description: "Tailored fine-tuned open-source LLMs trained on domain-specific terminology, specialized heavy engineering guidelines, or proprietary sector datasets.",
@@ -298,198 +295,61 @@ export default function Solutions() {
         </h2>
       </div>
 
-      {/* THE MASTER MATRIX ARCHITECTURE */}
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
+      {/* THE MASTER GLASSMORPHIC GRID ARCHITECTURE */}
+      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
         
-        {/* COLUMN 1: LEFT BLOCK MATRIX */}
-        <div className="space-y-6 order-2 lg:order-1 relative">
-          <div className="absolute right-[-34px] top-0 bottom-0 w-[2px] hidden lg:flex flex-col justify-around pointer-events-none z-0">
-            {[1, 2, 3].map((n) => (
-              <div 
-                key={n} 
-                className="w-2 h-2 rounded-full transform translate-x-[3px]"
-                style={{
-                  backgroundColor: isDarkTheme 
-                    ? "rgba(59, 130, 246, 0.4)" 
-                    : isCustomTheme 
-                    ? "rgba(54, 85, 143, 0.4)" 
-                    : "rgba(217, 119, 6, 0.4)",
-                  boxShadow: isDarkTheme 
-                    ? "0 0 8px #3b82f6" 
-                    : isCustomTheme 
-                    ? "0 0 8px #36558F" 
-                    : "0 0 8px #d97706"
-                }}
-              />
-            ))}
-          </div>
-
-          {leftSolutions.map((sol, idx) => (
-            <div 
-              key={idx}
-              style={{
-                backgroundColor: isDarkTheme 
-                  ? "rgba(255, 255, 255, 0.01)" 
-                  : isCustomTheme 
-                  ? "rgba(218, 240, 238, 0.25)" 
-                  : "rgba(217, 119, 6, 0.03)",
-                borderColor: isDarkTheme 
-                  ? "rgba(255, 255, 255, 0.05)" 
-                  : isCustomTheme 
-                  ? "rgba(64, 121, 140, 0.15)" 
-                  : "rgba(217, 119, 6, 0.1)"
-              }}
-              className={`group relative backdrop-blur-md p-6 rounded-xl transition-all duration-300 shadow-sm border hover:border-opacity-50`}
-            >
-              <div className="flex flex-col gap-2">
-                <span 
-                  style={{
-                    color: accentColor,
-                    backgroundColor: isDarkTheme 
-                      ? "rgba(13, 42, 74, 0.4)" 
-                      : isCustomTheme 
-                      ? "rgba(218, 240, 238, 0.6)" 
-                      : "rgba(217, 119, 6, 0.15)",
-                    borderColor: isDarkTheme 
-                      ? "rgba(13, 42, 74, 0.4)" 
-                      : isCustomTheme 
-                      ? "rgba(54, 85, 143, 0.3)" 
-                      : "rgba(217, 119, 6, 0.3)"
-                  }}
-                  className="text-[10px] font-mono tracking-wider uppercase border px-2 py-0.5 rounded self-start"
-                >
-                  {sol.tag}
-                </span>
-                <h3 className={`text-lg font-semibold tracking-tight group-hover:transition-colors duration-300 ${
-                  isDarkTheme 
-                    ? "text-white group-hover:text-blue-400"
-                    : isCustomTheme
-                    ? "text-[#1A2530] group-hover:text-[#36558F]"
-                    : "text-[#1F1300] group-hover:text-yellow-600"
-                }`}>
-                  {sol.title}
-                </h3>
-                <p className={`text-xs leading-relaxed transition-colors duration-300 ${textColor}`}>
-                  {sol.description}
-                </p>
-
-                {/* Features List */}
-                <ul className="space-y-1.5 pt-2 border-t border-white/5">
-                  {sol.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="text-[11px] flex items-start gap-2 text-slate-500">
-                      <span style={{ color: accentColor }} className="font-bold">•</span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tech Specs */}
-                <div className="pt-2 flex flex-col gap-1 text-[10px] font-mono text-slate-500">
-                  <div><span className="font-bold">Tech:</span> {sol.techStack}</div>
-                  <div><span className="font-bold">Deploy:</span> {sol.deployment}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* COLUMN 2: CUSTOM HIGH-TECH CANVAS ORB WITH CONNECTION CIRCUITS */}
-        <div className="flex items-center justify-center relative min-h-[360px] order-1 lg:order-2">
-          
-          {/* Main Backdrop Ambient Halo */}
+        {allSolutions.map((sol, idx) => (
           <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] blur-[90px] rounded-full pointer-events-none z-0"
+            key={idx}
             style={{
-              backgroundColor: isDarkTheme 
-                ? "rgba(29, 78, 216, 0.15)" 
-                : isCustomTheme 
-                ? "rgba(64, 121, 140, 0.15)" 
-                : "rgba(217, 119, 6, 0.15)"
+              backgroundColor: isDarkTheme ? "rgba(15, 23, 42, 0.3)" : "rgba(255, 255, 255, 0.4)",
+              borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(64, 121, 140, 0.2)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              boxShadow: isDarkTheme 
+                ? "0 10px 30px -10px rgba(6, 182, 212, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.05)" 
+                : "0 10px 30px -10px rgba(54, 85, 143, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.3)"
             }}
-          />
-          
-          {/* SVG DATA CONNECTOR STREAMS */}
-          <svg className="absolute inset-0 w-full h-full hidden lg:block pointer-events-none overflow-visible z-0" viewBox="0 0 400 400">
-            {/* Left Hand Wire Array paths */}
-            <path d="M 50,75 L 120,75 L 150,200" fill="none" stroke={wireColor} strokeWidth="1.5" />
-            <path d="M 40,200 L 150,200" fill="none" stroke={wireDashColor} strokeWidth="1.5" strokeDasharray="4 4" />
-            <path d="M 50,325 L 120,325 L 150,200" fill="none" stroke={wireColor} strokeWidth="1.5" />
-
-            {/* Right Hand Wire Array paths */}
-            <path d="M 350,75 L 280,75 L 250,200" fill="none" stroke={wireColor} strokeWidth="1.5" />
-            <path d="M 360,200 L 250,200" fill="none" stroke={wireDashColor} strokeWidth="1.5" strokeDasharray="4 4" />
-            <path d="M 350,325 L 280,325 L 250,200" fill="none" stroke={wireColor} strokeWidth="1.5" />
-          </svg>
-
-          {/* Running Canvas Context Module */}
-          <canvas 
-            ref={canvasRef} 
-            width={380} 
-            height={380}
-            className="relative z-10"
-          />
-        </div>
-
-        {/* COLUMN 3: RIGHT BLOCK MATRIX */}
-        <div className="space-y-6 order-3 relative">
-          <div className="absolute left-[-34px] top-0 bottom-0 w-[2px] hidden lg:flex flex-col justify-around pointer-events-none z-0">
-            {[1, 2, 3].map((n) => (
-              <div 
-                key={n}
-                className="w-2 h-2 rounded-full transform translate-x-[-3px]"
-                style={{
-                  backgroundColor: isDarkTheme 
-                    ? "rgba(59, 130, 246, 0.4)" 
-                    : isCustomTheme 
-                    ? "rgba(54, 85, 143, 0.4)" 
-                    : "rgba(217, 119, 6, 0.4)",
-                  boxShadow: isDarkTheme 
-                    ? "0 0 8px #3b82f6" 
-                    : isCustomTheme 
-                    ? "0 0 8px #36558F" 
-                    : "0 0 8px #d97706"
-                }}
-              />
-            ))}
-          </div>
-
-          {rightSolutions.map((sol, idx) => (
+            className={`group relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-[1.01] min-h-[340px] max-h-[340px] hover:max-h-[680px]`}
+          >
+            {/* Image Placeholder Block */}
             <div 
-              key={idx}
               style={{
-                backgroundColor: isDarkTheme 
-                  ? "rgba(255, 255, 255, 0.01)" 
-                  : isCustomTheme 
-                  ? "rgba(218, 240, 238, 0.25)" 
-                  : "rgba(217, 119, 6, 0.03)",
-                borderColor: isDarkTheme 
-                  ? "rgba(255, 255, 255, 0.05)" 
-                  : isCustomTheme 
-                  ? "rgba(64, 121, 140, 0.15)" 
-                  : "rgba(217, 119, 6, 0.1)"
+                borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.08)" : "rgba(64, 121, 140, 0.15)",
+                backgroundColor: isDarkTheme ? "rgba(255, 255, 255, 0.01)" : "rgba(54, 85, 143, 0.02)"
               }}
-              className={`group relative backdrop-blur-md p-6 rounded-xl transition-all duration-300 shadow-sm border hover:border-opacity-50`}
+              className="h-44 w-full border-b border-dashed flex items-center justify-center flex-shrink-0 relative group-hover:bg-opacity-50 transition-all duration-300"
             >
-              <div className="flex flex-col gap-2">
+              {/* Placeholder Indicator Icon & Text */}
+              <div className="flex flex-col items-center gap-2 text-slate-500/70">
+                <svg className="w-8 h-8 opacity-40 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
+                </svg>
+                <span className="text-[9px] font-mono tracking-widest uppercase opacity-60">Solution Asset {idx + 1}</span>
+              </div>
+            </div>
+
+            {/* Card Content Area */}
+            <div className="p-6 flex-1 flex flex-col justify-between overflow-hidden">
+              <div className="space-y-3">
+                {/* Tag Badge */}
                 <span 
                   style={{
                     color: accentColor,
                     backgroundColor: isDarkTheme 
                       ? "rgba(13, 42, 74, 0.4)" 
-                      : isCustomTheme 
-                      ? "rgba(218, 240, 238, 0.6)" 
-                      : "rgba(217, 119, 6, 0.15)",
+                      : "rgba(218, 240, 238, 0.6)",
                     borderColor: isDarkTheme 
                       ? "rgba(13, 42, 74, 0.4)" 
-                      : isCustomTheme 
-                      ? "rgba(54, 85, 143, 0.3)" 
-                      : "rgba(217, 119, 6, 0.3)"
+                      : "rgba(54, 85, 143, 0.3)"
                   }}
-                  className="text-[10px] font-mono tracking-wider uppercase border px-2 py-0.5 rounded self-start"
+                  className="inline-block text-[10px] font-mono tracking-wider uppercase border px-2 py-0.5 rounded self-start"
                 >
                   {sol.tag}
                 </span>
-                <h3 className={`text-lg font-semibold tracking-tight group-hover:transition-colors duration-300 ${
+
+                {/* Title */}
+                <h3 className={`text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300 ${
                   isDarkTheme 
                     ? "text-white group-hover:text-blue-400"
                     : isCustomTheme
@@ -498,29 +358,45 @@ export default function Solutions() {
                 }`}>
                   {sol.title}
                 </h3>
-                <p className={`text-xs leading-relaxed transition-colors duration-300 ${textColor}`}>
+
+                {/* Short Preview (always visible, truncated) */}
+                <p className={`text-xs leading-relaxed line-clamp-2 transition-colors duration-300 ${textColor} group-hover:hidden`}>
                   {sol.description}
                 </p>
 
-                {/* Features List */}
-                <ul className="space-y-1.5 pt-2 border-t border-white/5">
-                  {sol.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="text-[11px] flex items-start gap-2 text-slate-500">
-                      <span style={{ color: accentColor }} className="font-bold">•</span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Expanded Content (visible on hover) */}
+                <div className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[380px] transition-all duration-500 ease-in-out overflow-hidden space-y-4">
+                  <p className={`text-xs leading-relaxed transition-colors duration-300 ${textColor}`}>
+                    {sol.description}
+                  </p>
 
-                {/* Tech Specs */}
-                <div className="pt-2 flex flex-col gap-1 text-[10px] font-mono text-slate-500">
-                  <div><span className="font-bold">Tech:</span> {sol.techStack}</div>
-                  <div><span className="font-bold">Deploy:</span> {sol.deployment}</div>
+                  {/* Features List */}
+                  <ul className="space-y-2 pt-3 border-t border-white/5">
+                    {sol.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="text-[11px] flex items-start gap-2 text-slate-500">
+                        <span style={{ color: accentColor }} className="font-bold">•</span>
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
+
+              {/* Bottom Tech Specs */}
+              <div className="pt-4 mt-auto border-t border-white/5 flex flex-col gap-1.5 text-[10px] font-mono text-slate-500 flex-shrink-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-bold text-slate-400">Tech:</span>
+                  <span className="truncate">{sol.techStack}</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="font-bold text-slate-400">Deploy:</span>
+                  <span className="truncate">{sol.deployment}</span>
+                </div>
+              </div>
+
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
       </div>
 
