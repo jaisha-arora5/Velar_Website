@@ -98,48 +98,7 @@ export default function Solutions() {
     }
   ];
 
-  const simulatorSteps = [
-    {
-      title: "1. Secure Ingestion & Parsing",
-      desc: "Raw documents (circulars, sheets, databases) are parsed locally. PII and metadata are stripped automatically in a secure sandbox.",
-      status: "Active Isolation",
-      logs: [
-        "INGEST: Parsing File: G_circular_2026.pdf",
-        "INGEST: Anonymizing employee IDs...",
-        "INGEST: 100% local buffer success."
-      ]
-    },
-    {
-      title: "2. Vector Indexing",
-      desc: "Text is chunked and embedded using on-premise embedding models, then index-mapped inside a local PostgreSQL vector database.",
-      status: "Local Sync Completed",
-      logs: [
-        "VECTOR: Generating 768-dim embeddings...",
-        "VECTOR: In-memory HNSW index updated.",
-        "VECTOR: Syncing database entries: OK"
-      ]
-    },
-    {
-      title: "3. Air-Gapped Inference",
-      desc: "A fine-tuned localized Llama model queries the vectorized context. Zero data queries exit the internal network firewall.",
-      status: "Sovereign Query Success",
-      logs: [
-        "MODEL: Ingesting query template...",
-        "MODEL: Matching local vector context...",
-        "MODEL: Response parsed with 98.4% accuracy."
-      ]
-    },
-    {
-      title: "4. Audited Output Delivery",
-      desc: "The output is double-checked for compliance against institutional rules and safely returned to the user dashboard.",
-      status: "Compliance Certified",
-      logs: [
-        "AUDIT: Policy compliance check: PASS",
-        "AUDIT: System logs encrypted and saved.",
-        "SYS: Output dispatched to local client UI."
-      ]
-    }
-  ];
+
 
   // MATHEMATICAL PLASMA CORE SPHERE ENGINE (UNIFIED TO THEME COLORS)
   useEffect(() => {
@@ -238,6 +197,96 @@ export default function Solutions() {
   const wireDashColor = isDarkTheme ? "rgba(59, 130, 246, 0.3)" : isCustomTheme ? "rgba(64, 121, 140, 0.25)" : "rgba(217, 119, 6, 0.3)";
   const headingColor = isDarkTheme ? "text-white" : isCustomTheme ? "text-[#1A2530]" : "text-[#1F1300]";
   const textColor = isDarkTheme ? "text-slate-400" : isCustomTheme ? "text-[#1A2530]" : "text-amber-900";
+
+  const cardBorder = isDarkTheme 
+    ? "rgba(255, 255, 255, 0.08)" 
+    : isCustomTheme 
+    ? "rgba(64, 121, 140, 0.2)" 
+    : "rgba(217, 119, 6, 0.15)";
+  const cardBg = isDarkTheme 
+    ? "rgba(10, 7, 38, 0.65)" 
+    : isCustomTheme 
+    ? "rgba(255, 255, 255, 0.85)" 
+    : "rgba(250, 249, 246, 0.9)";
+
+  const workflowSteps = [
+    {
+      stepId: "STAGE-01 / COLLECTION",
+      title: "Secure Data Collection",
+      desc: "Secure ingestion of enterprise documents and datasets through isolated, authenticated channels with full auditability.",
+      icon: "📋",
+      status: "SECURE INGESTION ACTIVE",
+      metrics: [
+        { label: "Data Pipeline", value: "100% Air-Gapped", type: "badge" },
+        { label: "Anonymization", value: "Active & Local", type: "success" },
+        { label: "MITM Check", value: "Passed", type: "success" },
+        { label: "Ingest Completion", value: "100%", type: "gauge", progress: 100 }
+      ],
+      checklist: [
+        "PII scrubbed locally before indexing",
+        "Encrypted transfer protocols verified",
+        "Immutable audit logs created",
+        "Directory path validation complete"
+      ]
+    },
+    {
+      stepId: "STAGE-02 / PROCESSING",
+      title: "Processing & Indexing",
+      desc: "Advanced semantic processing and vector indexing on on-premise infrastructure, ensuring zero data exposure to external networks.",
+      icon: "⚙️",
+      status: "LOCAL SYNC COMPLETED",
+      metrics: [
+        { label: "Index Engine", value: "pgvector On-Premise", type: "success" },
+        { label: "Embedding Model", value: "768-dim Local", type: "badge" },
+        { label: "Vector DB Seal", value: "Synchronized", type: "success" },
+        { label: "Memory Indexing", value: "100%", type: "gauge", progress: 100 }
+      ],
+      checklist: [
+        "Local vector database online",
+        "Text chunking & vectorizing active",
+        "HNSW index sealed in-memory",
+        "External telemetry blocked"
+      ]
+    },
+    {
+      stepId: "STAGE-03 / INFERENCE",
+      title: "Intelligent Processing",
+      desc: "Fine-tuned, domain-specific AI models deliver context-aware insights with enterprise-grade accuracy and compliance validation.",
+      icon: "🧠",
+      status: "SOVEREIGN QUERY SUCCESS",
+      metrics: [
+        { label: "Local GPU Core", value: "GPU Ring-Fenced", type: "success" },
+        { label: "Model Type", value: "Domain Fine-Tuned", type: "badge" },
+        { label: "Output Compliance", value: "Certified Pass", type: "success" },
+        { label: "Query Accuracy", value: "98.4%", type: "gauge", progress: 98.4 }
+      ],
+      checklist: [
+        "Localized Qwen/Llama weights loaded",
+        "Isolated inference bounds verified",
+        "Institutional query filters active",
+        "Accuracy benchmark completed"
+      ]
+    },
+    {
+      stepId: "STAGE-04 / DELIVERY",
+      title: "Secure Delivery",
+      desc: "Encrypted, audited delivery of insights to authorized stakeholders with role-based access control and immutable logging.",
+      icon: "🔒",
+      status: "COMPLIANCE CERTIFIED",
+      metrics: [
+        { label: "SSO Connection", value: "Local Active", type: "success" },
+        { label: "Data Encryption", value: "End-to-End Active", type: "success" },
+        { label: "Access Bounds", value: "RBAC Enforced", type: "badge" },
+        { label: "Audit Verification", value: "100%", type: "gauge", progress: 100 }
+      ],
+      checklist: [
+        "Client UI encryption handshakes OK",
+        "Immutable database logs encrypted",
+        "Role-based token validation passed",
+        "Compliance certificate generated"
+      ]
+    }
+  ];
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-center bg-transparent px-6 py-24 relative overflow-hidden transition-colors duration-300">
@@ -475,89 +524,240 @@ export default function Solutions() {
 
       </div>
 
-      {/* SOVEREIGN DEPLOYMENT FLOW SIMULATOR */}
-      <div className="max-w-7xl w-full mt-32 border-t border-white/5 pt-24 space-y-12 relative z-10">
+      {/* PROFESSIONAL DEPLOYMENT PROCESS FLOW */}
+      <div className="max-w-7xl w-full mt-32 border-t pt-24 space-y-16 relative z-10"
+        style={{
+          borderTopColor: isDarkTheme 
+            ? "rgba(255, 255, 255, 0.05)" 
+            : isCustomTheme 
+            ? "rgba(64, 121, 140, 0.15)" 
+            : "rgba(217, 119, 6, 0.1)"
+        }}>
         
-        <div className="text-center space-y-3">
+        {/* Section Header */}
+        <div className="text-center space-y-4">
           <span 
             style={{
               color: accentColor,
               backgroundColor: isDarkTheme ? "rgba(6, 182, 212, 0.1)" : isCustomTheme ? "rgba(54, 85, 143, 0.1)" : "rgba(217, 119, 6, 0.1)",
               borderColor: isDarkTheme ? "rgba(6, 182, 212, 0.2)" : isCustomTheme ? "rgba(54, 85, 143, 0.2)" : "rgba(217, 119, 6, 0.2)"
             }}
-            className="inline-block text-[10px] font-mono tracking-wider uppercase border px-3 py-1 rounded-full"
+            className="inline-block text-[10px] font-semibold tracking-wider uppercase border px-3 py-1.5 rounded-full"
           >
-            Processing Pipeline
+            Implementation Workflow
           </span>
-          <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${headingColor}`}>
-            Sovereign AI Deployment Flow Simulator
+          <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${headingColor}`}>
+            Our Deployment Process
           </h2>
-          <p className={`text-xs sm:text-sm max-w-lg mx-auto ${textColor}`}>
-            Interactive simulator showcasing step-by-step query execution across a ring-fenced enterprise network infrastructure.
+          <p className={`text-sm sm:text-base max-w-2xl mx-auto leading-relaxed ${textColor}`}>
+            A structured, transparent approach to delivering enterprise solutions with security and compliance at every stage.
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-stretch">
-          {simulatorSteps.map((step, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveStep(idx)}
-              style={{
-                backgroundColor: activeStep === idx ? (isDarkTheme ? "#0A0726" : isCustomTheme ? "#DAF0EE" : "#fef3c7") : "transparent",
-                borderColor: activeStep === idx ? accentColor : (isDarkTheme ? "rgba(34, 211, 238, 0.1)" : isCustomTheme ? "rgba(64, 121, 140, 0.2)" : "rgba(217, 119, 6, 0.2)")
-              }}
-              className="text-left border p-6 rounded-2xl cursor-pointer flex flex-col justify-between hover:scale-[1.01] transition-all duration-300 shadow-sm"
-            >
-              <div className="space-y-3">
-                <div className={`text-xs font-bold font-mono ${
-                  activeStep === idx ? (isDarkTheme ? "text-cyan-400" : isCustomTheme ? "text-[#36558F]" : "text-yellow-600") : "text-slate-500"
-                }`}>
-                  {step.title}
-                </div>
-                <p className={`text-xs leading-relaxed ${textColor}`}>
-                  {step.desc}
-                </p>
-              </div>
-              <div 
-                className={`text-[9px] font-mono uppercase tracking-widest mt-6 py-1 px-2.5 rounded border self-start ${
-                  activeStep === idx 
-                    ? (isDarkTheme ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" : isCustomTheme ? "bg-[#36558F]/10 text-[#36558F] border-[#36558F]/30" : "bg-yellow-500/10 text-yellow-600 border-yellow-500/30") 
-                    : "bg-slate-550/5 text-slate-500 border-white/5"
-                }`}
+        {/* Interactive Layout Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Buttons Navigation */}
+          <div className="lg:col-span-5 space-y-3">
+            {workflowSteps.map((step, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveStep(idx)}
+                style={{
+                  backgroundColor: activeStep === idx 
+                    ? (isDarkTheme ? "rgba(59, 130, 246, 0.08)" : "rgba(218, 240, 238, 0.35)") 
+                    : "transparent",
+                  borderColor: activeStep === idx 
+                    ? accentColor 
+                    : (isDarkTheme ? "rgba(255, 255, 255, 0.05)" : "rgba(64, 121, 140, 0.15)")
+                }}
+                className="w-full text-left p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all duration-300 group"
               >
-                {step.status}
-              </div>
-            </button>
-          ))}
-        </div>
+                <div className="flex items-center gap-3.5">
+                  {/* Icon / Number Circle */}
+                  <div 
+                    className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm transition-all duration-300"
+                    style={{
+                      backgroundColor: activeStep === idx ? accentColor : (isDarkTheme ? "rgba(255, 255, 255, 0.05)" : "rgba(64, 121, 140, 0.08)"),
+                      color: activeStep === idx ? (isDarkTheme ? "#030014" : "#FAF9F6") : (isDarkTheme ? "#94a3b8" : "#36558F")
+                    }}
+                  >
+                    {idx + 1}
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className={`font-bold text-sm transition-colors duration-300 ${headingColor}`}>
+                      {step.title}
+                    </h4>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-mono">
+                      {step.stepId.split(" / ")[1]}
+                    </span>
+                  </div>
+                </div>
 
-        {/* Selected Step Code Sandbox Terminal */}
-        <div 
-          style={{
-            backgroundColor: "#030014",
-            borderColor: "rgba(255, 255, 255, 0.1)"
-          }}
-          className="w-full border rounded-2xl overflow-hidden shadow-2xl flex flex-col min-h-[220px]"
-        >
-          <div className="bg-slate-950 px-4 py-3 flex items-center justify-between border-b border-white/5">
-            <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase">
-              Isolated Pipeline Execution Logs &bull; Step {activeStep + 1}
-            </span>
-            <div className="flex gap-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest">ACTIVE</span>
+                <div 
+                  className={`w-2 h-2 rounded-full ${
+                    activeStep === idx ? "animate-ping" : "opacity-40"
+                  }`}
+                  style={{ backgroundColor: activeStep === idx ? accentColor : "transparent" }}
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Right Telemetry Panel */}
+          <div className="lg:col-span-7">
+            <div 
+              style={{
+                backgroundColor: cardBg,
+                borderColor: cardBorder
+              }}
+              className="w-full border rounded-2xl overflow-hidden shadow-xl flex flex-col min-h-[380px] backdrop-blur-md transition-all duration-300"
+            >
+              {/* Telemetry Header */}
+              <div 
+                style={{ 
+                  backgroundColor: isDarkTheme ? "rgba(3, 0, 20, 0.5)" : "rgba(218, 240, 238, 0.4)",
+                  borderBottomColor: cardBorder
+                }}
+                className="px-6 py-4 flex items-center justify-between border-b transition-colors duration-300"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className={`text-[10px] font-bold tracking-widest transition-colors duration-300 uppercase ${isDarkTheme ? "text-slate-400" : "text-[#1A2530]"}`}>
+                    Deployment Telemetry
+                  </span>
+                </div>
+                <span 
+                  style={{ 
+                    color: accentColor,
+                    backgroundColor: isDarkTheme ? "rgba(6, 182, 212, 0.1)" : "rgba(54, 85, 143, 0.1)",
+                    borderColor: isDarkTheme ? "rgba(6, 182, 212, 0.2)" : "rgba(54, 85, 143, 0.2)"
+                  }}
+                  className="text-[9px] font-mono tracking-widest border px-2 py-0.5 rounded-full uppercase"
+                >
+                  {workflowSteps[activeStep].stepId}
+                </span>
+              </div>
+
+              {/* Telemetry Body */}
+              <div className="p-6 flex-1 flex flex-col justify-between gap-6 transition-all duration-300">
+                
+                {/* Active Details */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-2xl">{workflowSteps[activeStep].icon}</span>
+                      <h3 className={`text-base font-bold transition-colors duration-300 ${headingColor}`}>
+                        {workflowSteps[activeStep].title}
+                      </h3>
+                    </div>
+                    <span 
+                      className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full tracking-wider flex-shrink-0 ${
+                        isDarkTheme 
+                          ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" 
+                          : "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                      }`}
+                    >
+                      {workflowSteps[activeStep].status}
+                    </span>
+                  </div>
+                  <p className={`text-xs leading-relaxed transition-colors duration-300 ${textColor}`}>
+                    {workflowSteps[activeStep].desc}
+                  </p>
+                </div>
+
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {workflowSteps[activeStep].metrics.map((metric, idx) => (
+                    <div 
+                      key={idx}
+                      style={{
+                        backgroundColor: isDarkTheme ? "rgba(255, 255, 255, 0.02)" : "rgba(54, 85, 143, 0.03)",
+                        borderColor: cardBorder
+                      }}
+                      className="p-3 border rounded-xl flex flex-col justify-between gap-1.5 transition-all duration-300"
+                    >
+                      <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-wider">
+                        {metric.label}
+                      </span>
+                      {metric.type === "gauge" ? (
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-between text-[11px] font-bold">
+                            <span style={{ color: accentColor }}>{metric.value}</span>
+                          </div>
+                          <div className={`w-full h-1.5 rounded-full ${isDarkTheme ? "bg-slate-800/80" : "bg-slate-200"} overflow-hidden`}>
+                            <div 
+                              style={{ 
+                                width: `${metric.progress}%`,
+                                backgroundColor: accentColor
+                              }}
+                              className="h-full rounded-full transition-all duration-500"
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <span 
+                          style={{ 
+                            color: metric.type === "success" 
+                              ? (isDarkTheme ? "#34d399" : "#0f766e")
+                              : metric.type === "warning"
+                              ? (isDarkTheme ? "#fbbf24" : "#b45309")
+                              : accentColor 
+                          }}
+                          className="text-[12px] font-bold tracking-tight"
+                        >
+                          {metric.value}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Compliance Verification Checklist */}
+                <div 
+                  style={{ 
+                    backgroundColor: isDarkTheme ? "rgba(0, 0, 0, 0.2)" : "rgba(64, 121, 140, 0.03)",
+                    borderColor: cardBorder
+                  }}
+                  className="p-4 border rounded-xl space-y-2.5 transition-all duration-300"
+                >
+                  <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span>Stage Verification Checklist</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                    {workflowSteps[activeStep].checklist.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-[11px] leading-snug">
+                        <svg className="w-3 h-3 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className={textColor}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 
-          <div className="p-6 font-mono text-xs text-green-400 space-y-2 flex-1 flex flex-col justify-center">
-            {simulatorSteps[activeStep].logs.map((log, idx) => (
-              <div key={idx} className="flex gap-2">
-                <span className="text-slate-600">&gt;&gt;</span>
-                <span>{log}</span>
-              </div>
-            ))}
-          </div>
+        </div>
+
+        {/* Bottom Connection Line */}
+        <div className="pt-8 pb-4">
+          <div 
+            className="h-1 rounded-full mx-auto"
+            style={{
+              width: "60%",
+              background: `linear-gradient(90deg, transparent, ${accentColor}, transparent)`,
+              opacity: 0.5
+            }}
+          />
         </div>
 
       </div>
