@@ -77,8 +77,8 @@
     transform: translateX(0);
   }
   100% {
-    /* Moves back by exactly 7 cards (each card is 280px wide) */
-    transform: translateX(calc(-280px * 7));
+    /* Moves back by exactly 8 cards (each card is 290px wide + 32px gap = 322px) */
+    transform: translateX(calc(-322px * 8));
   }
 }
 
