@@ -1,7 +1,5 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
-
 interface SectorTheme {
   darkAccent: string;
   darkBg: string;
@@ -23,9 +21,8 @@ interface IndustryItem {
 }
 
 export default function Industries() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
 
   const sectors: IndustryItem[] = [
     { 

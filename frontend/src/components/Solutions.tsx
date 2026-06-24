@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
 
 interface SolutionTheme {
   primary: string;
@@ -26,9 +25,9 @@ interface SolutionCard {
 }
 
 export default function Solutions() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const theme = "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [activeStep, setActiveStep] = useState<number>(0); // For workflow steps at bottom
@@ -323,7 +322,6 @@ export default function Solutions() {
       stepId: "STAGE-01 / COLLECTION",
       title: "Secure Data Collection",
       desc: "Secure ingestion of enterprise documents and datasets through isolated, authenticated channels with full auditability.",
-      icon: "📋",
       status: "SECURE INGESTION ACTIVE",
       metrics: [
         { label: "Data Pipeline", value: "100% Air-Gapped", type: "badge" },
@@ -342,7 +340,6 @@ export default function Solutions() {
       stepId: "STAGE-02 / PROCESSING",
       title: "Processing & Indexing",
       desc: "Advanced semantic processing and vector indexing on on-premise infrastructure, ensuring zero data exposure to external networks.",
-      icon: "⚙️",
       status: "LOCAL SYNC COMPLETED",
       metrics: [
         { label: "Index Engine", value: "pgvector On-Premise", type: "success" },
@@ -361,7 +358,6 @@ export default function Solutions() {
       stepId: "STAGE-03 / INFERENCE",
       title: "Intelligent Processing",
       desc: "Fine-tuned, domain-specific AI models deliver context-aware insights with enterprise-grade accuracy and compliance validation.",
-      icon: "🧠",
       status: "SOVEREIGN QUERY SUCCESS",
       metrics: [
         { label: "Local GPU Core", value: "GPU Ring-Fenced", type: "success" },
@@ -380,7 +376,6 @@ export default function Solutions() {
       stepId: "STAGE-04 / DELIVERY",
       title: "Secure Delivery",
       desc: "Encrypted, audited delivery of insights to authorized stakeholders with role-based access control and immutable logging.",
-      icon: "🔒",
       status: "COMPLIANCE CERTIFIED",
       metrics: [
         { label: "SSO Connection", value: "Local Active", type: "success" },
@@ -799,7 +794,6 @@ export default function Solutions() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2.5">
-                      <span className="text-2xl">{workflowSteps[activeStep].icon}</span>
                       <h3 className={`text-base font-bold transition-colors duration-300 ${headingColor}`}>
                         {workflowSteps[activeStep].title}
                       </h3>

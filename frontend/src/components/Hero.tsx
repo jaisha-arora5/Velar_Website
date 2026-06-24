@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 
 export default function Hero() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
 
   return (
     <section 

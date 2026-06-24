@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 
 export default function HomeDetails() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
 
   const [activeNode, setActiveNode] = useState<string>("ingestion");
 

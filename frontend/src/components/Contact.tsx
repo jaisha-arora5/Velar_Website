@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
 
 export default function Contact() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
   
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);

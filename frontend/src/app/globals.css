@@ -8,39 +8,7 @@
 }
 
 @layer base {
-  :root,
-  .dark,
-  [data-theme="dark"] {
-    /* Dark theme colors */
-    --color-bg-primary: #030014;
-    --color-bg-start: #08071a;
-    --color-bg-end: #0c0b2e;
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #cbd5e1;
-    --color-accent-primary: #0369a1;
-    --color-accent-secondary: #06b6d4;
-    --color-accent-tertiary: #1d4ed8;
-    --color-border: rgba(255, 255, 255, 0.1);
-    --color-navbar-bg: rgba(3, 0, 20, 0.8);
-  }
-
-  .light,
-  [data-theme="light"] {
-    /* Light theme colors */
-    --color-bg-primary: #f1e8b8;
-    --color-bg-start: #faf5e0;
-    --color-bg-end: #f1e8b8;
-    --color-text-primary: #1F1300;
-    --color-text-secondary: #4a3700;
-    --color-accent-primary: #F4D35E;
-    --color-accent-secondary: #D4A737;
-    --color-accent-tertiary: #F4D35E;
-    --color-border: rgba(31, 19, 0, 0.15);
-    --color-navbar-bg: rgba(241, 232, 184, 0.9);
-  }
-
-  .custom,
-  [data-theme="custom"] {
+  :root {
     /* Custom theme colors - Professional Slate/Steel Blue on Cream Background */
     --color-bg-primary: #FAF9F6;
     --color-bg-start: #FFFFFF;
@@ -154,15 +122,6 @@
   height: 100%;
   pointer-events: none;
   z-index: 1;
-}
-
-.dark-overlay {
-  background: radial-gradient(circle at center, rgba(3, 0, 20, 0.25) 0%, rgba(3, 0, 20, 0.45) 100%);
-  backdrop-filter: blur(1px) saturate(0.5);
-}
-
-.light-overlay {
-  background: rgba(241, 232, 184, 0.4);
 }
 
 .custom-overlay {

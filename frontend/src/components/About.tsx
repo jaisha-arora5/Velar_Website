@@ -1,13 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
 
 export default function About() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
-
   const [skills] = useState([
     { name: "Secure On-Premises LLM Fine-Tuning", value: 95, desc: "Custom model training on private GPU clusters" },
     { name: "Multi-Department Workflow Automation Accuracy", value: 92, desc: "Automatic document parsing and validation" },
@@ -51,24 +46,22 @@ export default function About() {
     }
   ];
 
-  const accentColor = isDarkTheme ? "#06b6d4" : "#36558F";
-  const accentBg = isDarkTheme ? "rgba(13, 42, 74, 0.4)" : "rgba(218, 240, 238, 0.6)";
-  const accentBorder = isDarkTheme ? "rgba(6, 182, 212, 0.4)" : "rgba(54, 85, 143, 0.3)";
-  const textColor = isDarkTheme ? "text-slate-400" : "text-[#1A2530]";
-  const headingColor = isDarkTheme ? "text-white" : "text-[#1A2530]";
-  const cardBg = isDarkTheme ? "#0A0726" : "#DAF0EE";
-  const cardBorder = isDarkTheme ? "rgba(34, 211, 238, 0.1)" : "rgba(64, 121, 140, 0.2)";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
+  const accentColor = "#36558F";
+  const accentBg = "rgba(218, 240, 238, 0.6)";
+  const accentBorder = "rgba(54, 85, 143, 0.3)";
+  const textColor = "text-[#1A2530]";
+  const headingColor = "text-[#1A2530]";
+  const cardBg = "#DAF0EE";
+  const cardBorder = "rgba(64, 121, 140, 0.2)";
 
   return (
     <section className="w-full min-h-screen bg-transparent px-6 py-24 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-300">
       
       {/* Decorative Blur Flares */}
-      <div className={`absolute top-20 right-10 w-80 h-80 rounded-full blur-3xl pointer-events-none ${
-        isDarkTheme ? "bg-cyan-500/5" : "bg-[#36558F]/5"
-      }`} />
-      <div className={`absolute bottom-20 left-10 w-80 h-80 rounded-full blur-3xl pointer-events-none ${
-        isDarkTheme ? "bg-blue-600/5" : "bg-[#40798C]/5"
-      }`} />
+      <div className="absolute top-20 right-10 w-80 h-80 rounded-full blur-3xl pointer-events-none bg-[#36558F]/5" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full blur-3xl pointer-events-none bg-[#40798C]/5" />
 
       <div className="max-w-7xl w-full space-y-24 relative z-10">
         

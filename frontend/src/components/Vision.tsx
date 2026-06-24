@@ -1,11 +1,8 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
-
 export default function Vision() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
 
   const founders = [
     {

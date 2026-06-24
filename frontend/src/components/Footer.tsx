@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 
 const footerLinks = [
   { label: "Home", path: "/" },
@@ -13,9 +12,8 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-  const isCustomTheme = theme === "custom";
+  const isDarkTheme = false;
+  const isCustomTheme = true;
   const currentYear = new Date().getFullYear();
 
   return (
