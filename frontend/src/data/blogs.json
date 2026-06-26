@@ -1,0 +1,24 @@
+[
+  {
+    "id": "blog-1",
+    "title": "Why Local Air-Gapped LLMs are the Future of Indian PSUs",
+    "summary": "An in-depth look at why public sector enterprises are shifting away from public cloud AI APIs in favor of secure, on-premises sovereign hardware configurations to protect strategic national datasets.",
+    "content": "In recent years, the rapid advancement of generative AI has presented massive opportunities for enterprise efficiency. However, for sovereign institutions, public sector undertakings (PSUs), and government bodies, this transition is fraught with compliance and security challenges.\n\n### The Vulnerability of Public Cloud APIs\nEvery query sent to a public cloud API travels across public networks, exposing sensitive policy plans, citizen records, and institutional knowledge to third-party logs. Even with enterprise contracts, the risk of data leakage, unauthorized telemetry, and compliance breaches under sovereign laws is substantial.\n\n### Enter Sovereign AI: 100% Air-Gapped\nTo solve this, Velar Info designs and deploys local LLMs directly on-premises. Key benefits include:\n1. **Zero Data Leakage**: Sensitive records never leave the physical building.\n2. **Compliance Alignment**: Fully meets national standards for government data custody.\n3. **Sub-second Latencies**: Running on local GPUs bypasses network bottlenecking, enabling near-instantaneous query routing.\n\nBy keeping models local, institutions maintain absolute data ownership while unlocking the power of modern decision intelligence.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "date": "2026-06-20",
+    "readTime": "5 min read",
+    "category": "Sovereign AI",
+    "author": "Nehal Bharti"
+  },
+  {
+    "id": "blog-2",
+    "title": "Demystifying Cognitive RAG in Complex Legal Workflows",
+    "summary": "How localized Retrieval-Augmented Generation (RAG) models are transforming bureaucratic document search, allowing departments to query decades of circulars with absolute precision.",
+    "content": "Bureaucratic departments are flooded with thousands of legal documents, circulars, and historical files. Traditional keyword search often fails because it misses the conceptual meaning behind queries.\n\n### How Cognitive RAG Differs\nRetrieval-Augmented Generation (RAG) bridges this gap by combining vector search with local language models. Instead of searching for matching words, the system understands the semantic context. For example, a search for 'leave rules during emergency' will return relevant notifications even if the exact words 'emergency' or 'leave' aren't present.\n\n### The On-Premise Execution\nAt Velar, we implement Cognitive RAG with:\n- **pgvector Integration**: Fast, scalable in-memory storage of document embeddings.\n- **PII Scrubbing**: Automatic detection and removal of personally identifiable information before indexing.\n- **Auditable Trails**: A record of every document source used to generate an answer, ensuring zero hallucination.\n\nThis approach turns overwhelming archives into a secure, instantaneous search engine, saving thousands of administrative hours.",
+    "image": "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=800&q=80",
+    "date": "2026-06-25",
+    "readTime": "4 min read",
+    "category": "Workflows",
+    "author": "Anu Arora"
+  }
+]

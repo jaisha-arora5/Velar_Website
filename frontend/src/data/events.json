@@ -1,0 +1,24 @@
+[
+  {
+    "id": "event-1",
+    "title": "Velar Sovereign AI Keynote at National Tech Summit",
+    "description": "Unveiling our 100% air-gapped, on-premises LLM integration framework to public sector enterprise leaders, demonstrating sub-second inference speeds without external internet connectivity.",
+    "images": [
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "date": "2026-05-12",
+    "location": "New Delhi, India"
+  },
+  {
+    "id": "event-2",
+    "title": "Strategic Collaboration with Central PSU Partners",
+    "description": "Velar Info signed key MoUs with leading PSU partners to deploy regional-language conversational agents locally, helping transition legacy archives into sovereign vector databases.",
+    "images": [
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "date": "2026-06-02",
+    "location": "Mumbai, India"
+  }
+]

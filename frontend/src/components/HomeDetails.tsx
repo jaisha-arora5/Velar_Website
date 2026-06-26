@@ -1,13 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+
+interface BlogItem {
+  id: string;
+  title: string;
+  summary: string;
+  image: string;
+  date: string;
+  readTime: string;
+  category: string;
+  author: string;
+}
 
 export default function HomeDetails() {
   const isDarkTheme = false;
   const isCustomTheme = true;
 
   const [activeNode, setActiveNode] = useState<string>("ingestion");
+  const [latestBlogs, setLatestBlogs] = useState<BlogItem[]>([]);
+  const [loadingBlogs, setLoadingBlogs] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function fetchLatestBlogs() {
+      try {
+        const res = await fetch("/api/blogs");
+        if (res.ok) {
+          const data = await res.json();
+          setLatestBlogs(data.slice(0, 3));
+        }
+      } catch (err) {
+        console.error("Failed to fetch latest blogs:", err);
+      } finally {
+        setLoadingBlogs(false);
+      }
+    }
+    fetchLatestBlogs();
+  }, []);
+
 
   const stats = [
     { value: "100%", label: "On-Premises", desc: "Air-gapped deployment for absolute security" },
@@ -394,7 +425,139 @@ export default function HomeDetails() {
           </div>
         </div>
       </section>
-      
+
+      {/* 4. LATEST BLOGS PREVIEW SECTION */}
+      <section className="space-y-12 pt-8">
+        <div className="text-center space-y-4">
+          <span 
+            style={{
+              color: accentColor,
+              backgroundColor: isDarkTheme ? "rgba(6, 182, 212, 0.15)" : "rgba(54, 85, 143, 0.15)",
+              borderColor: isDarkTheme ? "rgba(6, 182, 212, 0.3)" : "rgba(54, 85, 143, 0.3)"
+            }}
+            className="inline-block text-xs font-mono tracking-widest uppercase border px-3 py-1 rounded-full"
+          >
+            LATEST INTELLIGENCE
+          </span>
+          <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${headingColor}`}>
+            Deep Technical Insights & Briefings
+          </h2>
+          <p className={`text-sm max-w-2xl mx-auto ${textColor}`}>
+            Explore the latest developments in sovereign AI engineering, localized system architecture, and air-gapped security protocols.
+          </p>
+        </div>
+
+        {loadingBlogs ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((n) => (
+              <div
+                key={n}
+                style={{ backgroundColor: cardBg, borderColor: cardBorder }}
+                className="border rounded-2xl overflow-hidden h-[400px] animate-pulse flex flex-col justify-between"
+              >
+                <div className="w-full h-44 bg-slate-400/10" />
+                <div className="p-6 space-y-4 flex-1">
+                  <div className="h-3 w-1/4 bg-slate-400/10 rounded" />
+                  <div className="h-6 w-3/4 bg-slate-400/10 rounded" />
+                  <div className="h-4 w-full bg-slate-400/10 rounded" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : latestBlogs.length === 0 ? (
+          <div className="text-center py-10">
+            <p className={`text-xs ${textColor}`}>No articles found.</p>
+          </div>
+        ) : (
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {latestBlogs.map((blog) => (
+                <div
+                  key={blog.id}
+                  style={{
+                    backgroundColor: isDarkTheme ? "rgba(10, 7, 38, 0.5)" : "rgba(255, 255, 255, 0.6)",
+                    borderColor: cardBorder
+                  }}
+                  className="border rounded-2xl overflow-hidden shadow-md hover:shadow-lg hover:border-opacity-60 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between group backdrop-blur-sm"
+                >
+                  <div>
+                    {/* Blog Image */}
+                    <div className="w-full aspect-[16/10] relative overflow-hidden bg-slate-900/5 border-b border-[#40798C]/10">
+                      {blog.image ? (
+                        <img
+                          src={blog.image}
+                          alt={blog.title}
+                          className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/10">
+                          <span className="text-[10px] tracking-widest text-slate-500 uppercase font-mono">VELAR INSIGHTS</span>
+                        </div>
+                      )}
+
+                      <span
+                        style={{
+                          color: accentColor,
+                          backgroundColor: "#FFFFFF",
+                          borderColor: isDarkTheme ? "rgba(6, 182, 212, 0.3)" : "rgba(54, 85, 143, 0.3)"
+                        }}
+                        className="absolute top-4 left-4 text-[8px] font-mono font-bold uppercase border px-2.5 py-0.5 rounded-full shadow-sm"
+                      >
+                        {blog.category}
+                      </span>
+                    </div>
+
+                    {/* Blog Details */}
+                    <div className="p-6 space-y-2">
+                      <div className="flex items-center gap-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider">
+                        <span>{new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                        <span>•</span>
+                        <span>{blog.readTime}</span>
+                      </div>
+                      <h3 className={`text-base font-bold tracking-tight ${headingColor} group-hover:text-[#36558F] transition-colors duration-300 line-clamp-2`}>
+                        {blog.title}
+                      </h3>
+                      <p className={`text-xs leading-relaxed line-clamp-3 ${textColor}`}>
+                        {blog.summary}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Blog Footer Link */}
+                  <div className="px-6 pb-6 pt-0 border-t border-[#40798C]/10 mt-4 flex items-center justify-between">
+                    <span className="text-[9px] text-slate-500 font-semibold">By {blog.author}</span>
+                    <Link
+                      href={`/blogs/${blog.id}`}
+                      style={{ color: accentColor }}
+                      className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+                    >
+                      <span>Read Briefing</span>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* View All Button */}
+            <div className="text-center">
+              <Link
+                href="/blogs"
+                style={{
+                  backgroundColor: accentColor,
+                  borderColor: accentColor
+                }}
+                className="inline-block text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-lg transition-all shadow-md text-white hover:opacity-90 cursor-pointer"
+              >
+                View All Technical Briefings
+              </Link>
+            </div>
+          </div>
+        )}
+      </section>
+
     </div>
   );
 }

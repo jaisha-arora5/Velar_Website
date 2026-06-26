@@ -1,6 +1,117 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
+interface EventItem {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  image?: string;
+  date: string;
+  location: string;
+}
+
+function EventImageSlider({ images, title }: { images: string[]; title: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/10">
+        <svg className="w-8 h-8 text-slate-400 mb-1 opacity-50" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+        </svg>
+        <span className="text-[8px] tracking-widest text-slate-500 uppercase font-mono">VELAR EVENT MEDIA</span>
+      </div>
+    );
+  }
+
+  const nextSlide = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setActiveIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-full group/slider">
+      <img 
+        src={images[activeIndex]} 
+        alt={`${title} - image ${activeIndex + 1}`} 
+        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.02]"
+      />
+      
+      {images.length > 1 && (
+        <>
+          {/* Navigation Arrows */}
+          <button
+            type="button"
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-950/60 hover:bg-slate-950/85 text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 cursor-pointer z-20"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-950/60 hover:bg-slate-950/85 text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 cursor-pointer z-20"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+
+          {/* Indicator Dots */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-20">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setActiveIndex(idx);
+                }}
+                className={`w-1.5 h-1.5 rounded-full transition-all cursor-pointer ${
+                  idx === activeIndex ? "bg-white w-3" : "bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function Vision() {
+  const [events, setEvents] = useState<EventItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const res = await fetch("/api/events");
+        if (res.ok) {
+          const data = await res.ok ? await res.json() : [];
+          setEvents(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch events:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchEvents();
+  }, []);
+
   const isDarkTheme = false;
   const isCustomTheme = true;
 
@@ -250,6 +361,90 @@ export default function Vision() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* 4. COMPANY EVENTS SECTION (NEW) */}
+        <div className="space-y-12 pt-8">
+          <div className="text-center space-y-3">
+            <span 
+              style={{
+                color: accentColor,
+                backgroundColor: accentBg,
+                borderColor: accentBorder
+              }}
+              className="inline-block text-[9px] font-mono tracking-widest uppercase border px-2.5 py-0.5 rounded-full"
+            >
+              VELAR IN ACTION
+            </span>
+            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${headingColor}`}>
+              Company Events & Milestones
+            </h2>
+            <p className={`text-xs sm:text-sm max-w-md mx-auto ${textColor}`}>
+              Explore our latest achievements, local hardware deployments, and strategic technology seminars.
+            </p>
+          </div>
+
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {[1, 2].map((n) => (
+                <div 
+                  key={n}
+                  style={{ backgroundColor: cardBg, borderColor: cardBorder }}
+                  className="border rounded-2xl overflow-hidden h-[380px] animate-pulse flex flex-col justify-between"
+                >
+                  <div className="w-full h-48 bg-slate-400/10" />
+                  <div className="p-6 space-y-4 flex-1">
+                    <div className="h-3 w-1/4 bg-slate-400/10 rounded" />
+                    <div className="h-6 w-3/4 bg-slate-400/10 rounded" />
+                    <div className="h-4 w-full bg-slate-400/10 rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : events.length === 0 ? (
+            <div className="text-center py-8">
+              <p className={`text-xs ${textColor}`}>No public events recorded yet.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {events.map((event) => (
+                <div 
+                  key={event.id}
+                  style={{
+                    backgroundColor: cardBg,
+                    borderColor: cardBorder
+                  }}
+                  className="w-full border rounded-2xl overflow-hidden shadow-xl hover:border-opacity-70 transition-all duration-500 flex flex-col group"
+                >
+                  {/* Event Photo Container */}
+                  <div className="w-full aspect-[16/10] relative overflow-hidden bg-slate-900/10 border-b border-white/5">
+                    <EventImageSlider 
+                      images={event.images || (event.image ? [event.image] : [])} 
+                      title={event.title} 
+                    />
+
+                    {/* Date and Location overlay */}
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[9px] font-mono font-semibold tracking-wider text-white bg-slate-950/60 px-3 py-1.5 rounded-md backdrop-blur-sm">
+                      <span>{new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                      <span>{event.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Event Details */}
+                  <div className="p-6 flex-1 flex flex-col justify-between gap-4">
+                    <div className="space-y-2">
+                      <h3 className={`text-base font-bold tracking-tight ${headingColor} group-hover:text-[#36558F] transition-colors duration-300`}>
+                        {event.title}
+                      </h3>
+                      <p className={`text-xs leading-relaxed ${textColor}`}>
+                        {event.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
       </div>
