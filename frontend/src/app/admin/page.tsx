@@ -67,11 +67,7 @@ export default function AdminPortal() {
   const [uploading, setUploading] = useState<boolean>(false);
   const [uploadError, setUploadError] = useState<string>("");
 
-  useEffect(() => {
-    checkSession();
-  }, []);
-
-  const checkSession = async () => {
+  async function checkSession() {
     try {
       const res = await fetch("/api/auth");
       if (res.ok) {
@@ -83,9 +79,9 @@ export default function AdminPortal() {
     } finally {
       setCheckingSession(false);
     }
-  };
+  }
 
-  const fetchData = async () => {
+  async function fetchData() {
     setLoadingData(true);
     try {
       const [eventsRes, blogsRes] = await Promise.all([
@@ -100,12 +96,17 @@ export default function AdminPortal() {
         const blogsData = await blogsRes.json();
         setBlogs(blogsData);
       }
-    } catch (error) {
-      console.error("Error loading dashboard data", error);
+    } catch (err) {
+      console.error("Failed to fetch dashboard data", err);
     } finally {
       setLoadingData(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -467,7 +468,7 @@ export default function AdminPortal() {
             {activeTab === "events" && (
               events.length === 0 ? (
                 <div className="border border-dashed border-[#40798C]/20 rounded-2xl p-12 text-center bg-[#08071a]/20">
-                  <p className="text-sm text-slate-500">No events found. Click 'Add Event' to seed your first event.</p>
+                  <p className="text-sm text-slate-500">No events found. Click &apos;Add Event&apos; to seed your first event.</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -526,7 +527,7 @@ export default function AdminPortal() {
             {activeTab === "blogs" && (
               blogs.length === 0 ? (
                 <div className="border border-dashed border-[#40798C]/20 rounded-2xl p-12 text-center bg-[#08071a]/20">
-                  <p className="text-sm text-slate-500">No blog posts found. Click 'Create Blog Post' to author your first article.</p>
+                  <p className="text-sm text-slate-500">No blog posts found. Click &apos;Create Blog Post&apos; to author your first article.</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

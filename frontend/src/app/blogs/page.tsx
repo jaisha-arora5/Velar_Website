@@ -21,7 +21,6 @@ const CATEGORIES = ["All", "Sovereign AI", "Workflows", "Security", "Enterprise"
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
-  const [filteredBlogs, setFilteredBlogs] = useState<BlogItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -33,7 +32,6 @@ export default function BlogsPage() {
         if (res.ok) {
           const data = await res.json();
           setBlogs(data);
-          setFilteredBlogs(data);
         }
       } catch (err) {
         console.error("Failed to load blogs:", err);
@@ -44,8 +42,8 @@ export default function BlogsPage() {
     fetchBlogs();
   }, []);
 
-  // Filter logic
-  useEffect(() => {
+  // Filter logic calculated during render
+  const filteredBlogs = (() => {
     let result = blogs;
 
     if (selectedCategory !== "All") {
@@ -63,8 +61,8 @@ export default function BlogsPage() {
       );
     }
 
-    setFilteredBlogs(result);
-  }, [searchTerm, selectedCategory, blogs]);
+    return result;
+  })();
 
   // Design system colors consistent with the rest of the site (Cream/Steel Blue)
   const isDarkTheme = false;
@@ -177,7 +175,7 @@ export default function BlogsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
               </svg>
               <h3 className="text-sm font-bold text-[#1A2530]">No Articles Found</h3>
-              <p className="text-xs text-slate-500">We couldn't find any articles matching your search query or filters. Try adjusting your parameters.</p>
+              <p className="text-xs text-slate-500">We couldn&apos;t find any articles matching your search query or filters. Try adjusting your parameters.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">

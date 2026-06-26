@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import AnimatedProgressBar from "./AnimatedProgressBar";
 
 export default function About() {
   const [skills] = useState([
@@ -178,13 +179,13 @@ export default function About() {
                     }}
                     className="w-full h-2 border rounded-full overflow-hidden"
                   >
-                    <div 
+                    <AnimatedProgressBar 
                       className={`h-full bg-gradient-to-r rounded-full transition-all duration-1000 ${
                         isDarkTheme 
                           ? "from-blue-600 to-cyan-400" 
                           : "from-[#36558F] to-[#40798C]"
                       }`}
-                      style={{ width: `${skill.value}%` }}
+                      progress={skill.value}
                     />
                   </div>
                 </div>

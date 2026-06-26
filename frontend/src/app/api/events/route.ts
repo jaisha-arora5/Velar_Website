@@ -3,6 +3,16 @@ import fs from "fs/promises";
 import path from "path";
 import { checkAuth } from "@/lib/authHelper";
 
+interface EventItem {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  image?: string;
+  date: string;
+  location: string;
+}
+
 const dbPath = path.join(process.cwd(), "src/data/events.json");
 
 async function readEvents() {
@@ -14,7 +24,7 @@ async function readEvents() {
   }
 }
 
-async function writeEvents(events: any[]) {
+async function writeEvents(events: EventItem[]) {
   // Ensure the directory exists
   await fs.mkdir(path.dirname(dbPath), { recursive: true });
   await fs.writeFile(dbPath, JSON.stringify(events, null, 2), "utf-8");

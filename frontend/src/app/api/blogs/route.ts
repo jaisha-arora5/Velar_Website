@@ -3,6 +3,18 @@ import fs from "fs/promises";
 import path from "path";
 import { checkAuth } from "@/lib/authHelper";
 
+interface BlogItem {
+  id: string;
+  title: string;
+  summary: string;
+  content: string;
+  image: string;
+  date: string;
+  readTime: string;
+  category: string;
+  author: string;
+}
+
 const dbPath = path.join(process.cwd(), "src/data/blogs.json");
 
 async function readBlogs() {
@@ -14,7 +26,7 @@ async function readBlogs() {
   }
 }
 
-async function writeBlogs(blogs: any[]) {
+async function writeBlogs(blogs: BlogItem[]) {
   await fs.mkdir(path.dirname(dbPath), { recursive: true });
   await fs.writeFile(dbPath, JSON.stringify(blogs, null, 2), "utf-8");
 }

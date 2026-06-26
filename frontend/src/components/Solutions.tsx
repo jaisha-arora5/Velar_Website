@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import AnimatedProgressBar from "./AnimatedProgressBar";
 
 interface SolutionTheme {
   primary: string;
@@ -833,12 +834,12 @@ export default function Solutions() {
                             <span style={{ color: accentColor }}>{metric.value}</span>
                           </div>
                           <div className={`w-full h-1.5 rounded-full ${isDarkTheme ? "bg-slate-800/80" : "bg-slate-200"} overflow-hidden`}>
-                            <div 
+                            <AnimatedProgressBar 
                               style={{ 
-                                width: `${metric.progress}%`,
                                 backgroundColor: accentColor
                               }}
                               className="h-full rounded-full transition-all duration-500"
+                              progress={metric.progress ?? 0}
                             />
                           </div>
                         </div>

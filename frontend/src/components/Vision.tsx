@@ -194,7 +194,7 @@ export default function Vision() {
               Meet the Architects of Velar
             </h2>
             <p className={`text-xs sm:text-sm max-w-md mx-auto ${textColor}`}>
-              Leading Velar Info's strategic deployment operations, compliance alignment, and corporate scaling.
+              Leading Velar Info&apos;s strategic deployment operations, compliance alignment, and corporate scaling.
             </p>
           </div>
 
@@ -244,7 +244,7 @@ export default function Vision() {
                 {/* Note Block */}
                 <div className="p-6 flex-1 flex flex-col justify-start bg-gradient-to-b from-transparent to-[#050317]/10">
                   <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${textColor}`}>
-                    "{founder.note}"
+                    &ldquo;{founder.note}&rdquo;
                   </p>
                 </div>
 

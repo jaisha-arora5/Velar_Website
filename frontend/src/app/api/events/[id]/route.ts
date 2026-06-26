@@ -3,6 +3,16 @@ import fs from "fs/promises";
 import path from "path";
 import { checkAuth } from "@/lib/authHelper";
 
+interface EventItem {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  image?: string;
+  date: string;
+  location: string;
+}
+
 const dbPath = path.join(process.cwd(), "src/data/events.json");
 
 async function readEvents() {
@@ -14,7 +24,7 @@ async function readEvents() {
   }
 }
 
-async function writeEvents(events: any[]) {
+async function writeEvents(events: EventItem[]) {
   await fs.writeFile(dbPath, JSON.stringify(events, null, 2), "utf-8");
 }
 
@@ -37,7 +47,7 @@ export async function PUT(
     }
 
     const events = await readEvents();
-    const eventIndex = events.findIndex((e: any) => e.id === id);
+    const eventIndex = events.findIndex((e: EventItem) => e.id === id);
 
     if (eventIndex === -1) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 });
@@ -74,7 +84,7 @@ export async function DELETE(
   try {
     const { id } = await params;
     const events = await readEvents();
-    const filteredEvents = events.filter((e: any) => e.id !== id);
+    const filteredEvents = events.filter((e: EventItem) => e.id !== id);
 
     if (events.length === filteredEvents.length) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 });

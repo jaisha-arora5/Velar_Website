@@ -3,6 +3,18 @@ import fs from "fs/promises";
 import path from "path";
 import { checkAuth } from "@/lib/authHelper";
 
+interface BlogItem {
+  id: string;
+  title: string;
+  summary: string;
+  content: string;
+  image: string;
+  date: string;
+  readTime: string;
+  category: string;
+  author: string;
+}
+
 const dbPath = path.join(process.cwd(), "src/data/blogs.json");
 
 async function readBlogs() {
@@ -14,7 +26,7 @@ async function readBlogs() {
   }
 }
 
-async function writeBlogs(blogs: any[]) {
+async function writeBlogs(blogs: BlogItem[]) {
   await fs.writeFile(dbPath, JSON.stringify(blogs, null, 2), "utf-8");
 }
 
@@ -25,7 +37,7 @@ export async function GET(
   try {
     const { id } = await params;
     const blogs = await readBlogs();
-    const blog = blogs.find((b: any) => b.id === id);
+    const blog = blogs.find((b: BlogItem) => b.id === id);
 
     if (!blog) {
       return NextResponse.json({ error: "Blog post not found" }, { status: 404 });
@@ -57,7 +69,7 @@ export async function PUT(
     }
 
     const blogs = await readBlogs();
-    const blogIndex = blogs.findIndex((b: any) => b.id === id);
+    const blogIndex = blogs.findIndex((b: BlogItem) => b.id === id);
 
     if (blogIndex === -1) {
       return NextResponse.json({ error: "Blog post not found" }, { status: 404 });
@@ -104,7 +116,7 @@ export async function DELETE(
   try {
     const { id } = await params;
     const blogs = await readBlogs();
-    const filteredBlogs = blogs.filter((b: any) => b.id !== id);
+    const filteredBlogs = blogs.filter((b: BlogItem) => b.id !== id);
 
     if (blogs.length === filteredBlogs.length) {
       return NextResponse.json({ error: "Blog post not found" }, { status: 404 });

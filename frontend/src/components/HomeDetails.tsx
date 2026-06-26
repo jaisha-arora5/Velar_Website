@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import AnimatedProgressBar from "./AnimatedProgressBar";
 
 interface BlogItem {
   id: string;
@@ -369,12 +370,12 @@ export default function HomeDetails() {
                           <span style={{ color: accentColor }}>{metric.value}</span>
                         </div>
                         <div className={`w-full h-1.5 rounded-full ${isDarkTheme ? "bg-slate-800/80" : "bg-slate-200"} overflow-hidden`}>
-                          <div 
+                          <AnimatedProgressBar 
                             style={{ 
-                              width: `${metric.progress}%`,
                               backgroundColor: accentColor
                             }}
                             className="h-full rounded-full transition-all duration-500"
+                            progress={metric.progress ?? 0}
                           />
                         </div>
                       </div>
