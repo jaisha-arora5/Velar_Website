@@ -195,8 +195,16 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-[10px] font-mono uppercase tracking-wider text-slate-500">Corporate Address</h4>
-                    <p className={`text-xs font-semibold mt-0.5 leading-relaxed ${headingColor}`}>
-                      X-20 First Floor, Naveen Shahdara, Delhi - 110032
+                    <p className={`text-xs font-semibold mt-0.5 leading-relaxed transition-colors ${
+                      isDarkTheme ? "text-white hover:text-cyan-400" : "text-[#36558F] hover:text-[#40798C]"
+                    }`}>
+                      <a 
+                        href="https://www.google.com/maps/search/?api=1&query=Velar+Info+Pvt+Ltd,+X-20+First+Floor,+Naveen+Shahdara,+Delhi+-+110032"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        X-20 First Floor, Naveen Shahdara, Delhi - 110032
+                      </a>
                     </p>
                   </div>
                 </div>
